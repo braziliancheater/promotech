@@ -1,5 +1,2 @@
 flask
-flask-sqlalchemy
-jinja2
 sqlalchemy
-venv

@@ -23,11 +23,11 @@ ai abre o vscode e criar um virtual env para as libs do python
 
 ![Imagem Tutorial 2](/imagens/3.png)
 
-4. criar venv com ```py -m venv backend-promotech```
+4. criar venv com ```py -m venv backend-promotech``` e ativar o venv ```.\backend-promotech\Scripts\activate```
 
 5. instalar as libs do python com ```py -m pip install -r requirements.txt```
 
-6. rodar o app com ```py main.py``` e acessar ```localhost:3000```, se funcionar e pq deu certo 🏖️
+6. rodar o app com ```py app.py``` e acessar ```localhost:3000```, se funcionar e pq deu certo 🏖️
 
 ### frontend
 
