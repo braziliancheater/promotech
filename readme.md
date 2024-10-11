@@ -1,6 +1,6 @@
 # promotech
 
-todo o codigo do promotech mora nesse repositorio, ambiente de homologacao, para producao falar com gabriel
+todo o codigo do promotech mora nesse repositorio, ambiente de homologacao
 
 # como usar na maquina local
 
@@ -40,5 +40,3 @@ ai abre o vscode e criar um virtual env para as libs do python
 4. rodar o app com ```npm run dev```
 
 5. acessar ```localhost:5000``` se funcionar e profit
-
-### gabriel e foda o resto e moda
