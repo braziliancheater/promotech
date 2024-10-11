@@ -1,0 +1,32 @@
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from .utils.utilidades import Utilidades
+
+app = Flask(__name__)
+db = SQLAlchemy()
+
+app.config['SECRET_KEY'] = '3402997433327cfb3aeee8e3be0fb84b6b1c2ab8492ea18c1cbe21f93a84ba2c'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///banco_backend.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+def criar_app():
+    """ montando a base da aplicacao """
+    Utilidades.limpar_tela()
+    Utilidades.mostar_logo()
+
+    try:
+        from .index import index as index_blueprint
+        app.register_blueprint(index_blueprint)
+        print('server', 'blueprint index criado com sucesso')
+    except Exception as e:
+        print('server', f'erro ao criar blueprint index: {e}')
+
+    # inicializao banco de dados
+    db.init_app(app)
+
+    with app.app_context():
+        from . import models
+
+        db.create_all()
+
+        return app
