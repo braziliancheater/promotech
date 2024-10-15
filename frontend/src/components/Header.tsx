@@ -12,19 +12,19 @@ function Header() {
 
           <div className="hidden lg:flex lg:gap-x-12">
             <a
-              href="#"
+              href="/"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Incio
             </a>
             <a
-              href="#"
+              href="/monteseupc"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Monte seu PC
             </a>
             <a
-              href="#"
+              href="/sobre"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Sobre

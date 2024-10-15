@@ -1,12 +1,13 @@
 import Card from "./components/Card";
 import Header from "./components/Header";
+import Button from "./components/Button";
 import { v4 } from "uuid";
 
 function App() {
   const produtos = [
     {
       imagem: "https://via.placeholder.com/300",
-      titulo: "Produto 1",
+      titulo: "Produto Felipe",
       descricao: "Esse produto vai mudar sua vida!",
       preco: 29.99,
     },
