@@ -4,14 +4,14 @@ function MonteSeuPC() {
 
     return (
         <div>
-      <div>
-        <Header />
-      </div>
+            <div>
+                <Header />
+            </div>
 
-      <main className="grid grid-cols-4 gap-4 p-6 ">
-        
-      </main>
-    </div>
+            <main className="grid grid-cols-4 gap-4 p-6 ">
+                
+            </main>
+        </div>
     )
 }
 

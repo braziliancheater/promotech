@@ -21,6 +21,13 @@ def criar_app():
     except Exception as e:
         print('server', f'erro ao criar blueprint index: {e}')
 
+    try:
+        from .produtos import produtos as prod_blueprint
+        app.register_blueprint(prod_blueprint)
+        print('server', 'blueprint produtos criado com sucesso')
+    except Exception as e:
+        print('server', f'erro ao criar blueprint produtos: {e}')
+
     # inicializao banco de dados
     db.init_app(app)
 
