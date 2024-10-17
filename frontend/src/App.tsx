@@ -10,7 +10,7 @@ function App() {
     const fetchProdutos = async () => {
       try {
         const response = await fetch(
-          "https://api.brazilian.lol/produtos/listar"
+          "http://localhost:5000/produtos/listar" //"https://api.brazilian.lol/produtos/listar"
         );
         if (response.ok) {
           const data = await response.json();
