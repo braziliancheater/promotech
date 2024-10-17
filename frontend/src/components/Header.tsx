@@ -1,32 +1,28 @@
+import Logo from "../assets/logo.png";
+
 function Header() {
   return (
-    <header className="bg-white">
+    <header className="bg-white border-b border-neutral-200 shadow-sm">
       <nav
-        className="mx-auto flex items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex items-center justify-between p-4 lg:px-8"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5 mr-6">
-            <p>Logo Promotech</p>
+            <img src={Logo} alt="Logo Promotech" className="h-12 w-18" />
           </a>
 
-          <div className="hidden lg:flex lg:gap-x-12">
-            <a
-              href="/"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
+          <div className="hidden lg:flex lg:gap-x-12 items-center justify-center">
+            <a href="/" className="font-semibold leading-6 text-gray-900">
               Incio
             </a>
             <a
               href="/monteseupc"
-              className="text-sm font-semibold leading-6 text-gray-900"
+              className="font-semibold leading-6 text-gray-900"
             >
               Monte seu PC
             </a>
-            <a
-              href="/sobre"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
+            <a href="/sobre" className="font-semibold leading-6 text-gray-900">
               Sobre
             </a>
           </div>
