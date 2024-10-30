@@ -36,6 +36,7 @@ function App() {
         {produtos.map((produto) => (
           <Card
             key={v4()}
+            id={produto["id"]}
             imagem={produto["imagem"]}
             titulo={produto["titulo"]}
             descricao={produto["descricao"]}

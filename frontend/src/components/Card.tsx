@@ -7,20 +7,19 @@ interface cardProps {
 }
 import { useNavigate } from "react-router-dom";
 
-const Card = ({ imagem, titulo, descricao, preco }: cardProps) => {
+const Card = ({ id, imagem, titulo, descricao, preco }: cardProps) => {
   const navigate = useNavigate();
 
-  function onVerDetalhesProduto() {
+  function onVerDetalhesProduto(titulo: string, id: string) {
     const query = new URLSearchParams();
-    query.set("title", titulo);
-    query.set("id", titulo);
+    query.set("titulo", titulo);
+    query.set("id", id);
     navigate(`/detalhes-produto?${query.toString()}`);
   }
 
   return (
     <a
-      href="#"
-      className="overflow-hidden rounded-lg shadow transition hover:shadow-lg"
+      className="cursor-pointer overflow-hidden rounded-lg shadow transition hover:shadow-lg"
       onClick={() => onVerDetalhesProduto(titulo, id)}
     >
       <img alt="" src={imagem} className="h-56 w-full object-cover" />
