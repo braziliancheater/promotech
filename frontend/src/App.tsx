@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Card from "./components/Card";
-import Header from "./components/Header";
 import { v4 } from "uuid";
 
 function App() {
@@ -28,10 +27,6 @@ function App() {
 
   return (
     <div>
-      <div>
-        <Header />
-      </div>
-
       <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6 ">
         {produtos.map((produto) => (
           <Card
