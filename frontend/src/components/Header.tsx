@@ -50,7 +50,7 @@ function Header() {
               </div>
             </form>
 
-            <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+            <div className="hidden md:flex-1 md:flex lg:flex lg:flex-1 md:justify-end lg:justify-end">
               <a
                 href="/login"
                 className="bg-black flex gap-2 font-semibold leading-6 p-2 rounded-lg text-white hover:bg-neutral-700 transition"
