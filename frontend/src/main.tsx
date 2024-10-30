@@ -6,30 +6,41 @@ import MonteSeuPC from "./pages/MonteSeuPC.tsx";
 import ErrorBoundary from "./components/ErrorBoundary";
 import NotFound from "./components/NotFound.tsx";
 import DetalhesProduto from "./pages/DetalhesProduto.tsx";
+import Header from "./components/Header.tsx";
+import Footer from "./components/Footer.tsx";
+import { GeistSans } from "geist/font/sans";
+
+const Layout = ({ children }) => (
+  <ErrorBoundary>
+    <Header />
+    {children}
+    <Footer />
+  </ErrorBoundary>
+);
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <ErrorBoundary>
+      <Layout>
         <App />
-      </ErrorBoundary>
+      </Layout>
     ),
   },
   {
     path: "/monteseupc",
     element: (
-      <ErrorBoundary>
+      <Layout>
         <MonteSeuPC />
-      </ErrorBoundary>
+      </Layout>
     ),
   },
   {
-    path: "/detalhes-produto",
+    path: "/produto/detalhe",
     element: (
-      <ErrorBoundary>
+      <Layout>
         <DetalhesProduto />
-      </ErrorBoundary>
+      </Layout>
     ),
   },
   {

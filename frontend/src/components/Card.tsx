@@ -14,7 +14,7 @@ const Card = ({ id, imagem, titulo, descricao, preco }: cardProps) => {
     const query = new URLSearchParams();
     query.set("titulo", titulo);
     query.set("id", id);
-    navigate(`/detalhes-produto?${query.toString()}`);
+    navigate(`/produto/detalhe?${query.toString()}`);
   }
 
   return (

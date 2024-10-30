@@ -5,7 +5,7 @@ import {
   LucideInfo,
   LucideShoppingCart,
 } from "lucide-react";
-import Logo from "../assets/logo.png";
+import Logo from "../assets/images/logo.png";
 
 function Header() {
   return (
