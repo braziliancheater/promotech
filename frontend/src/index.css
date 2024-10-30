@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Geist";
+  src: url(./assets/fonts/geist/GeistVF.ttf) format("truetype");
+}
+
+body {
+  font-family: "Geist", sans-serif;
+}
