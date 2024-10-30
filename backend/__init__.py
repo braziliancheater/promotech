@@ -1,9 +1,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from .utils.utilidades import Utilidades
+from flask_cors import CORS
 
 app = Flask(__name__)
 db = SQLAlchemy()
+CORS(app)
 
 app.config['SECRET_KEY'] = '3402997433327cfb3aeee8e3be0fb84b6b1c2ab8492ea18c1cbe21f93a84ba2c'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///banco_backend.db'

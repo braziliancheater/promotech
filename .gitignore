@@ -1,4 +1,4 @@
-/backend/backend-promotech
+/backend/backend
 *.pyc
 *.db
 /node_modules
