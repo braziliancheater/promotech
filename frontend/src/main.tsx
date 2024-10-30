@@ -8,7 +8,7 @@ import NotFound from "./components/NotFound.tsx";
 import DetalhesProduto from "./pages/DetalhesProduto.tsx";
 import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
-import { GeistSans } from "geist/font/sans";
+import Login from "./pages/Login.tsx";
 
 const Layout = ({ children }) => (
   <ErrorBoundary>
@@ -42,6 +42,10 @@ const router = createBrowserRouter([
         <DetalhesProduto />
       </Layout>
     ),
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
   {
     path: "*",
