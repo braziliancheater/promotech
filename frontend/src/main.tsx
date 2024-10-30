@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MonteSeuPC from "./pages/MonteSeuPC.tsx";
 import ErrorBoundary from "./components/ErrorBoundary";
 import NotFound from "./components/NotFound.tsx";
+import Processadores from "./pages/Processadores.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,14 @@ const router = createBrowserRouter([
     element: (
       <ErrorBoundary>
         <MonteSeuPC />
+      </ErrorBoundary>
+    ),
+  },
+  {
+    path: "/processadores",
+    element: (
+      <ErrorBoundary>
+        <Processadores />
       </ErrorBoundary>
     ),
   },
