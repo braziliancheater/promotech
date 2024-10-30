@@ -3,6 +3,7 @@ import {
   LucideComputer,
   LucideHome,
   LucideInfo,
+  LucidePlus,
   LucideShoppingCart,
 } from "lucide-react";
 import Logo from "../assets/images/logo.png";
@@ -50,7 +51,14 @@ function Header() {
               </div>
             </form>
 
-            <div className="hidden md:flex-1 md:flex lg:flex lg:flex-1 md:justify-end lg:justify-end">
+            <div className="hidden md:flex-1 md:flex lg:flex lg:flex-1 md:justify-end lg:justify-end gap-4">
+              <a
+                href="/produtos/novo"
+                className="flex-inline items-center justify-center"
+              >
+                <LucidePlus />
+                Novo Produto
+              </a>
               <a
                 href="/login"
                 className="bg-black flex gap-2 font-semibold leading-6 p-2 rounded-lg text-white hover:bg-neutral-700 transition"
@@ -82,13 +90,6 @@ function Header() {
             >
               <LucideComputer />
               Monte seu PC
-            </a>
-            <a
-              href="/sobre"
-              className="flex gap-2 font-semibold leading-6 text-gray-900 hover:text-gray-600"
-            >
-              <LucideInfo />
-              Sobre
             </a>
           </div>
         </div>

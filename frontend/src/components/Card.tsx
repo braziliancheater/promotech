@@ -22,7 +22,12 @@ const Card = ({ id, imagem, titulo, descricao, preco }: cardProps) => {
       className="cursor-pointer overflow-hidden rounded-lg shadow transition hover:shadow-lg"
       onClick={() => onVerDetalhesProduto(titulo, id)}
     >
-      <img alt="" src={imagem} className="h-56 w-full object-cover" />
+      <img
+        alt=""
+        src={imagem}
+        className="h-56 w-full object-cover"
+        loading="lazy"
+      />
 
       <div className="bg-white p-4 sm:p-6">
         <span>
