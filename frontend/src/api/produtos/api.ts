@@ -1,6 +1,6 @@
 const API_BASE_URL = "http://localhost:5000/produtos";
 
-export const buscar_produto_por_id = async (id) => {
+export const buscar_produto_por_id = async (id: any) => {
   try {
     const response = await fetch(`${API_BASE_URL}?id=${id}`);
     if (response.ok) {
