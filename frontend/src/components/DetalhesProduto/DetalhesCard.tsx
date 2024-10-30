@@ -11,7 +11,7 @@ const DetalhesCard = ({ imagem, titulo, descricao, preco }: detalhesProps) => {
 
   return (
     <div className="flex flex-col">
-      <section className="bg-muted py-12 md:py-24 lg:py-32">
+      <section className="bg-muted">
         <div className="container grid md:grid-cols-2 gap-8 px-4 md:px-6">
           <div className="flex flex-col items-start gap-6">
             <img
@@ -47,7 +47,7 @@ const DetalhesCard = ({ imagem, titulo, descricao, preco }: detalhesProps) => {
           </div>
         </div>
       </section>
-      <section className="py-12 md:py-24 lg:py-32">
+      <section className="">
         <div className="container grid gap-12 px-4 md:px-6">
           <div className="grid gap-6">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">

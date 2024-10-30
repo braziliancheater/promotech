@@ -1,9 +1,8 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import DetalhesCard from "../components/DetalhesProduto/DetalhesCard";
-import Header from "../components/Header";
 import { buscar_produto_por_id } from "../api/produtos/api";
 import { useEffect, useState } from "react";
-import { ChevronLeftIcon } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 function DetalhesProduto() {
   const navigate = useNavigate();
@@ -30,21 +29,16 @@ function DetalhesProduto() {
 
   return (
     <div>
-      <div>
-        <Header />
+      <div className="flex justify-left items-center p-4">
+        <button
+          onClick={() => navigate(-1)}
+          className="text-black transition-all duration-300 ease-in-out"
+        >
+          <ArrowLeft />
+        </button>
+        <p className="font-semibold">Voltar</p>
       </div>
-
       <main className="flex flex-col p-4">
-        <div className="justify-left items-center">
-          <button
-            onClick={() => navigate(-1)}
-            className="text-black transition-all duration-300 ease-in-out"
-          >
-            <ChevronLeftIcon />
-            Voltar
-          </button>
-        </div>
-
         {produto ? (
           <DetalhesCard
             imagem={produto["imagem"]}
