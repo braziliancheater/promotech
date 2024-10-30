@@ -1,4 +1,5 @@
 import requests
+from flask import Blueprint, request
 
 from . import produtos
 from ..models import Promocoes
@@ -41,6 +42,7 @@ def produtos_listar():
         
         for produto in produtos:
             produtos_list.append({
+                "id": produto.id,
                 "titulo": produto.titulo,
                 "descricao": produto.descricao,
                 "preco": produto.preco,
@@ -51,3 +53,51 @@ def produtos_listar():
         return {"produtos": produtos_list}, 200 
     except Exception as e:
         return {"error": f"Erro ao listar produtos: {e}"}, 500 
+    
+@produtos.route("/produtos" , methods=["GET"])
+def produtos_por_id():
+    id = request.args.get("id")
+    if not id:
+        return {"error": "ID não informado"}, 400
+    
+    try:
+        produtos = Promocoes.query.filter(Promocoes.id == id).all()
+        produtos_list = []
+
+        for produto in produtos:
+            produtos_list.append({
+                "id": produto.id,
+                "titulo": produto.titulo,
+                "descricao": produto.descricao,
+                "preco": produto.preco,
+                "site": produto.site,
+                "imagem": produto.imagem
+            })
+
+        return {"produto": produtos_list}, 200
+    except Exception as e:
+        return {"error": f"Erro ao obter produto: {e}"}, 500
+
+@produtos.route("/produtos/buscar", methods=["GET"])
+def produtos_buscar():
+    query = request.args.get("query")
+    if not query:
+        return {"error": "Query não informado"}, 400
+    
+    try:
+        produtos = Promocoes.query.filter(Promocoes.titulo.contains(query)).all()
+        produtos_list = []
+        
+        for produto in produtos:
+            produtos_list.append({
+                "id": produto.id,
+                "titulo": produto.titulo,
+                "descricao": produto.descricao,
+                "preco": produto.preco,
+                "site": produto.site,
+                "imagem": produto.imagem
+            })
+        
+        return {"produtos": produtos_list}, 200 
+    except Exception as e:
+        return {"error": f"Erro ao buscar produtos: {e}"}, 500
