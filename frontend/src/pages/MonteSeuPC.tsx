@@ -13,7 +13,7 @@ function MonteSeuPC() {
                     <ul>
                     <li><a href="#" className="parts" data-page="/processadores">PROCESSADORES</a></li>
                         <li className="parts">teste</li>
-                        <li className="parts"></li>
+                        <li className="parts">teste1</li>
                         <li className="parts"></li>
                         <li className="parts"></li>
                     </ul>
