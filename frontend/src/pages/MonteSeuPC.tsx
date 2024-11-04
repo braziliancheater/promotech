@@ -36,7 +36,7 @@ function MonteSeuPC() {
                 <Header />
             </div>
 
-            <main className="grid grid-cols-4 gap-4 p-6 ">
+            <main className="main_MonteSeuPC">
                 <div className="menu">
                     <ul>
                     <li><a href="#" className="parts" onClick={(event) => {event.preventDefault(); loadPage('/processadores');}}>PROCESSADORES</a></li>
