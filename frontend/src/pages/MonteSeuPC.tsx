@@ -12,6 +12,7 @@ function MonteSeuPC() {
                 return response.text();
             })
             .then(data => {
+                console.log(data);
                 const tela = document.getElementById('screens') as HTMLElement | null;
                 if(tela){
                     tela.innerHTML = data;

@@ -3,7 +3,7 @@ function Processadores() {
     return (
         <div>
 
-            <main className="grid grid-cols-4 gap-4 p-6 ">
+            <main className="main_Processadores">
                 <a>TESTE PÁGINA PROCESSADORES</a>
             </main>
         </div>
