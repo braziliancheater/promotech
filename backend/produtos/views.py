@@ -5,7 +5,7 @@ from . import produtos
 from ..models import Promocoes
 from .. import db
 
-@produtos.route("/produtos/cadastrar", methods=["POST"])
+@produtos.route("/produtos/cadastrar", methods=["GET"])
 def produtos_cadastrar():
     return "cadastro"
 

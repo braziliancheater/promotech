@@ -9,6 +9,7 @@ import DetalhesProduto from "./pages/DetalhesProduto.tsx";
 import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
 import Login from "./pages/Login.tsx";
+import Sobre from "./pages/Sobre.tsx";
 
 const Layout = ({ children }) => (
   <ErrorBoundary>
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
         <DetalhesProduto />
       </Layout>
     ),
+  },
+  {
+    path: "/sobre",
+    element: <Sobre />,
   },
   {
     path: "/login",

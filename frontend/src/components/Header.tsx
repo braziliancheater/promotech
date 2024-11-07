@@ -54,7 +54,7 @@ function Header() {
             <div className="hidden md:flex-1 md:flex lg:flex lg:flex-1 md:justify-end lg:justify-end gap-4">
               <a
                 href="/produtos/novo"
-                className="flex-inline items-center justify-center"
+                className="flex gap-2 font-semibold leading-6 p-2 rounded-lg hover:text-neutral-700 transition"
               >
                 <LucidePlus />
                 Novo Produto
