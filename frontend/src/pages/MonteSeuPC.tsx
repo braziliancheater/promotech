@@ -41,7 +41,11 @@ function MonteSeuPC() {
                 className="parts"
                 onClick={(event) => {
                   event.preventDefault();
-                  loadPage("/processadores");
+                  // Defina a URL do iframe para /processadores
+                  const iframe = document.getElementById(
+                    "processadores-iframe"
+                  );
+                  iframe.src = "/processadores";
                 }}
               >
                 PROCESSADORES
@@ -60,6 +64,11 @@ function MonteSeuPC() {
         <div className="screens" id="screens">
           Monte seu PC
         </div>
+        <iframe
+          id="processadores-iframe"
+          title="Processadores"
+          style={{ width: "100%", height: "600px", border: "none" }}
+        ></iframe>
       </main>
     </div>
   );
