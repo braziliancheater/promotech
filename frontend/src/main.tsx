@@ -9,12 +9,14 @@ import DetalhesProduto from "./pages/DetalhesProduto.tsx";
 import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
 import Login from "./pages/Login.tsx";
+import Cadastrar from "./pages/Cadastrar.tsx";
 import Sobre from "./pages/Sobre.tsx";
 import Processadores from "./pages/Processadores.tsx";
 import PlacaMae from "./pages/PlacaMae.tsx";
 import MemoriaRam from "./pages/MemoriaRam.tsx";
 import Armazenamento from "./pages/Armazenamento.tsx";
 import Cooler from "./pages/Cooler.tsx";
+
 
 const Layout = ({ children }) => (
   <ErrorBoundary>
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <App />
+      </Layout>
+    ),
+  },
+  {
+    path: "/Cadastrar",
+    element: (
+      <Layout>
+        <Cadastrar />
       </Layout>
     ),
   },
