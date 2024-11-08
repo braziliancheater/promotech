@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from flask_sqlalchemy import SQLAlchemy
 from .utils.utilidades import Utilidades
 from flask_cors import CORS
@@ -6,6 +7,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 db = SQLAlchemy()
 CORS(app)
+jwt = JWTManager(app)
 
 app.config['SECRET_KEY'] = '3402997433327cfb3aeee8e3be0fb84b6b1c2ab8492ea18c1cbe21f93a84ba2c'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///banco_backend.db'
@@ -31,6 +33,13 @@ def criar_app():
         print('server', 'blueprint produtos criado com sucesso')
     except Exception as e:
         print('server', f'erro ao criar blueprint produtos: {e}')
+
+    try:
+        from .usuarios import usuarios as usr_blueprint
+        app.register_blueprint(usr_blueprint)
+        print('server', 'blueprint usuarios criado com sucesso')
+    except Exception as e:
+        print('server', f'erro ao criar blueprint usuarios: {e}')
 
     # inicializao banco de dados
     db.init_app(app)

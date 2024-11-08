@@ -16,7 +16,7 @@ import PlacaMae from "./pages/PlacaMae.tsx";
 import MemoriaRam from "./pages/MemoriaRam.tsx";
 import Armazenamento from "./pages/Armazenamento.tsx";
 import Cooler from "./pages/Cooler.tsx";
-
+import Registrar from "./pages/Registrar.tsx";
 
 const Layout = ({ children }) => (
   <ErrorBoundary>
@@ -86,6 +86,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/registrar",
+    element: <Registrar />,
   },
   {
     path: "*",
