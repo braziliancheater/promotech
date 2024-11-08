@@ -5,7 +5,8 @@ function Cadastrar() {
         titulo: '',
         descricao: '',
         valor: '',
-        fotos: [] as File[]  // Definindo explicitamente o tipo de fotos como File[]
+        fotos: [] as File[], 
+        fotosBase64: [] as string[] // Novo estado para armazenar a imagem em base64
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -14,14 +15,66 @@ function Cadastrar() {
     };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = Array.from(e.target.files ?? []);  // Tratando `null` caso o `files` seja nulo
-        setProduto({ ...produto, fotos: files });
+        const files = Array.from(e.target.files ?? []);
+        if (files.length > 0) {
+            // Converter imagem para base64
+            const file = files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                // Armazenar a imagem em base64
+                setProduto((prevProduto) => ({
+                    ...prevProduto,
+                    fotosBase64: [reader.result as string], 
+                    fotos: files, 
+                }));
+            };
+            reader.readAsDataURL(file);
+        }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Aqui você pode implementar a lógica para enviar os dados para o backend ou realizar outras ações
-        console.log(produto);
+
+        if (!produto.titulo || !produto.descricao || !produto.valor || produto.fotosBase64.length === 0) {
+            alert('Todos os campos são obrigatórios!');
+            return;
+        }
+
+        const data = {
+            titulo: produto.titulo,
+            descricao: produto.descricao,
+            valor: produto.valor,
+            fotos: produto.fotosBase64[0], // Enviar a imagem base64
+        };
+
+        try {
+            // Enviar para o backend
+            const response = await fetch('http://localhost:5000/produtos/cadastrar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert('Produto cadastrado com sucesso!');
+                // Limpar o formulário
+                setProduto({
+                    titulo: '',
+                    descricao: '',
+                    valor: '',
+                    fotos: [],
+                    fotosBase64: [],
+                });
+            } else {
+                alert(`Erro: ${result.error || 'Erro desconhecido'}`);
+            }
+        } catch (error) {
+            console.error('Erro ao cadastrar produto:', error);
+            alert('Ocorreu um erro ao cadastrar o produto.');
+        }
     };
 
     return (
@@ -73,14 +126,13 @@ function Cadastrar() {
                             type="file"
                             id="fotos"
                             name="fotos"
-                            multiple
                             accept="image/*"
                             onChange={handleFileChange}
                             className="w-full text-sm"
                         />
                     </div>
 
-                    <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">Cadastrar</button>
+                    <button type="submit" className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800">Cadastrar</button>
                 </form>
 
                 {produto.fotos.length > 0 && (
