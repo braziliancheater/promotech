@@ -1,14 +1,5 @@
 from . import db
 
-class Produto(db.Model):
-    __tablename__ = "produtos"
-
-    id = db.Column(db.Integer, primary_key=True)
-    titulo = db.Column(db.String(255), nullable=False)
-    descricao = db.Column(db.String, nullable=False)
-    valor = db.Column(db.Float, nullable=False)
-    fotos = db.Column(db.String, nullable=False) 
-
 class Promocoes(db.Model):
     __tablename__ = "promocoes"
 
