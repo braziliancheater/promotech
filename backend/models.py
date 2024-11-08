@@ -1,11 +1,13 @@
 from . import db
 
-class Tipo(db.Model):
-    __tablename__ = "tipos"
+class Produto(db.Model):
+    __tablename__ = "produtos"
 
     id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(255), nullable=False)
+    titulo = db.Column(db.String(255), nullable=False)
     descricao = db.Column(db.String, nullable=False)
+    valor = db.Column(db.Float, nullable=False)
+    fotos = db.Column(db.String, nullable=False) 
 
 class Promocoes(db.Model):
     __tablename__ = "promocoes"

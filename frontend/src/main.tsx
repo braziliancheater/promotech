@@ -9,6 +9,7 @@ import DetalhesProduto from "./pages/DetalhesProduto.tsx";
 import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
 import Login from "./pages/Login.tsx";
+import Cadastrar from "./pages/Cadastrar.tsx";
 import Sobre from "./pages/Sobre.tsx";
 import Processadores from "./pages/Processadores.tsx";
 import PlacaMae from "./pages/PlacaMae.tsx";
@@ -17,6 +18,8 @@ import Armazenamento from "./pages/Armazenamento.tsx";
 import Cooler from "./pages/Cooler.tsx";
 import PlacaVideo from "./pages/PlacaVideo.tsx";
 import Fonte from "./pages/Fonte.tsx";
+import Registrar from "./pages/Registrar.tsx";
+
 
 const Layout = ({ children }) => (
   <ErrorBoundary>
@@ -32,6 +35,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <App />
+      </Layout>
+    ),
+  },
+  {
+    path: "/Cadastrar",
+    element: (
+      <Layout>
+        <Cadastrar />
       </Layout>
     ),
   },
@@ -86,6 +97,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/registrar",
+    element: <Registrar />,
   },
   {
     path: "*",
