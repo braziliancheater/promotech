@@ -2,39 +2,29 @@ import requests
 from flask import Blueprint, request, jsonify
 
 from . import produtos
-from ..models import Promocoes, Produto
+from ..models import Promocoes
 from .. import db
 
-@produtos.route("/produtos/cadastrar", methods=["POST"])
-def produtos_cadastrar():
+@produtos.route('/produtos/cadastrar', methods=['POST'])
+def cadastrar_promocao():
+
     
     data = request.get_json()
 
-    titulo = data.get('titulo')
-    descricao = data.get('descricao')
-    valor = data.get('valor')
-    fotos = data.get('fotos')  # A imagem em base64
-    tipo_id = data.get('tipo_id')  
-
-    if not titulo or not descricao or not valor or not fotos:
-        return jsonify({"error": "Todos os campos são obrigatórios!"}), 400
-
     try:
-        novo_produto = Produto(
-            titulo=titulo,
-            descricao=descricao,
-            valor=valor,
-            fotos=fotos,  
+        nova_promocao = Promocoes(
+            titulo=data['titulo'],
+            descricao=data['descricao'],
+            preco=data['valor'],
+            site=data['site'],
+            imagem=data['fotos']
         )
-
-        db.session.add(novo_produto)
-        db.session.commit()
-
-        return jsonify({"message": "Produto cadastrado com sucesso!"}), 201
-
+        db.session.add(nova_promocao)
+        db.session.commit() 
+        return f"Produto cadastrado com sucesso!", 201
     except Exception as e:
         db.session.rollback()
-        return jsonify({"error": str(e)}), 500
+        return f"Erro ao cadastrar Produto: {e}", 500
     
 
 @produtos.route("/produtos/dummy", methods=["GET"])

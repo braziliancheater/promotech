@@ -7,23 +7,15 @@ import {
   LucideShoppingCart,
 } from "lucide-react";
 import Logo from "../assets/images/logo.png";
-import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
 
 function Header() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("jwt_token");
+    
 
-    if (token) {
-      try {
-        const decodedToken = jwt_decode(token);
-        console.log(decodedToken);
-      } catch (error) {
-        console.error("Invalid token:", error);
-      }
-    }
+    
   }, []);
 
   return (
