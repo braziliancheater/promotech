@@ -15,6 +15,8 @@ import PlacaMae from "./pages/PlacaMae.tsx";
 import MemoriaRam from "./pages/MemoriaRam.tsx";
 import Armazenamento from "./pages/Armazenamento.tsx";
 import Cooler from "./pages/Cooler.tsx";
+import PlacaVideo from "./pages/PlacaVideo.tsx";
+import Fonte from "./pages/Fonte.tsx";
 
 const Layout = ({ children }) => (
   <ErrorBoundary>
@@ -72,6 +74,14 @@ const router = createBrowserRouter([
   {
     path: "/cooler",
     element: <Cooler />,
+  },
+  {
+    path: "/placavideo",
+    element: <PlacaVideo />,
+  },
+  {
+    path: "/fonte",
+    element: <Fonte />,
   },
   {
     path: "/login",

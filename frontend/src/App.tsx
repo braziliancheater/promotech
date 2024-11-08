@@ -9,7 +9,7 @@ function App() {
     const fetchProdutos = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/produtos/listar" //"https://api.brazilian.lol/produtos/listar"
+          "http://localhost:5000/produtos/buscar?query=Processador" //"https://api.brazilian.lol/produtos/listar"
         );
         if (response.ok) {
           const data = await response.json();
