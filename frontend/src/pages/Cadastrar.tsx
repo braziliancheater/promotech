@@ -5,8 +5,9 @@ function Cadastrar() {
         titulo: '',
         descricao: '',
         valor: '',
-        fotos: [] as File[], 
-        fotosBase64: [] as string[] // Novo estado para armazenar a imagem em base64
+        site: '',
+        fotos: [] as File[],
+        fotosBase64: [] as string[]
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -17,15 +18,13 @@ function Cadastrar() {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(e.target.files ?? []);
         if (files.length > 0) {
-            // Converter imagem para base64
             const file = files[0];
             const reader = new FileReader();
             reader.onloadend = () => {
-                // Armazenar a imagem em base64
                 setProduto((prevProduto) => ({
                     ...prevProduto,
-                    fotosBase64: [reader.result as string], 
-                    fotos: files, 
+                    fotosBase64: [reader.result as string],
+                    fotos: files,
                 }));
             };
             reader.readAsDataURL(file);
@@ -35,7 +34,7 @@ function Cadastrar() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!produto.titulo || !produto.descricao || !produto.valor || produto.fotosBase64.length === 0) {
+        if (!produto.titulo || !produto.descricao || !produto.valor || !produto.site || produto.fotosBase64.length === 0) {
             alert('Todos os campos são obrigatórios!');
             return;
         }
@@ -44,11 +43,11 @@ function Cadastrar() {
             titulo: produto.titulo,
             descricao: produto.descricao,
             valor: produto.valor,
-            fotos: produto.fotosBase64[0], // Enviar a imagem base64
+            site: produto.site,
+            fotos: produto.fotosBase64[0],
         };
 
         try {
-            // Enviar para o backend
             const response = await fetch('http://localhost:5000/produtos/cadastrar', {
                 method: 'POST',
                 headers: {
@@ -60,11 +59,11 @@ function Cadastrar() {
             const result = await response.json();
             if (response.ok) {
                 alert('Produto cadastrado com sucesso!');
-                // Limpar o formulário
                 setProduto({
                     titulo: '',
                     descricao: '',
                     valor: '',
+                    site: '',
                     fotos: [],
                     fotosBase64: [],
                 });
@@ -121,6 +120,19 @@ function Cadastrar() {
                     </div>
 
                     <div className="form-group">
+                        <label htmlFor="site" className="block text-lg font-medium mb-2">Link da Promoção</label>
+                        <input
+                            type="url"
+                            id="site"
+                            name="site"
+                            value={produto.site}
+                            onChange={handleInputChange}
+                            className="w-full p-2 border rounded-md"
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
                         <label htmlFor="fotos" className="block text-lg font-medium mb-2">Fotos do Produto</label>
                         <input
                             type="file"
@@ -134,22 +146,6 @@ function Cadastrar() {
 
                     <button type="submit" className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800">Cadastrar</button>
                 </form>
-
-                {produto.fotos.length > 0 && (
-                    <div className="mt-6">
-                        <h3 className="text-lg font-semibold">Fotos Selecionadas</h3>
-                        <div className="flex flex-wrap mt-2">
-                            {produto.fotos.map((foto, index) => (
-                                <img
-                                    key={index}
-                                    src={URL.createObjectURL(foto)}
-                                    alt={`Foto ${index + 1}`}
-                                    className="w-24 h-24 object-cover m-2 rounded-md"
-                                />
-                            ))}
-                        </div>
-                    </div>
-                )}
             </div>
         </div>
     );
