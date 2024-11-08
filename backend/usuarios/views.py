@@ -51,14 +51,14 @@ def usuarios_login():
     if not dados:
         return jsonify({"error": "JSON não informado"}), 400
     
-    email = dados.get("email")
+    usuario = dados.get("nome")
     senha = dados.get("senha")
     
-    if not email or not senha:
+    if not usuario or not senha:
         return jsonify({"error": "Email e senha são obrigatórios"}), 400
     
     # procura o usuario via email
-    usuario = Usuario.query.filter_by(email=email).first()
+    usuario = Usuario.query.filter_by(nome=usuario).first()
     
     if not usuario or not check_password_hash(usuario.senha, senha):
         return jsonify({"error": "Credenciais inválidas"}), 401

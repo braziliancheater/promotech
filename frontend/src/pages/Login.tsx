@@ -3,7 +3,7 @@ import { login_novo_usuario } from "../api/usuarios/api"; // Adjust this import 
 import Logo from "../assets/images/logo.png";
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -15,7 +15,7 @@ function Login() {
     setLoading(true);
 
     const loginData = {
-      email,
+      nome: usuario,
       senha: password,
     };
 
@@ -62,18 +62,18 @@ function Login() {
           <form onSubmit={handleSubmit} className="mt-8 space-y-6">
             <div className="rounded-md shadow-sm space-y-4">
               <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Email
+                <label htmlFor="usuario" className="sr-only">
+                  Usuario
                 </label>
                 <input
-                  id="email-address"
+                  id="usuario"
                   name="usuario"
                   type="text"
                   required
                   className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm"
-                  placeholder="Seu email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Seu usuario"
+                  value={usuario}
+                  onChange={(e) => setUsuario(e.target.value)}
                 />
               </div>
               <div>

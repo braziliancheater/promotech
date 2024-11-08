@@ -36,7 +36,6 @@ export default function Registrar() {
         },
         body: JSON.stringify({
           name: formData.name,
-          email: formData.email,
           password: formData.password,
         }),
       });

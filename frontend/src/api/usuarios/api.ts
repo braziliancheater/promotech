@@ -14,6 +14,7 @@ export const login_novo_usuario = async (dados: any) => {
       return data.access_token;
     } else {
       console.error("Falha ao obter dados:", response.status);
+      throw new Error("Falha ao obter dados");
     }
   } catch (error) {
     console.error("Erro ao buscar produto:", error);
