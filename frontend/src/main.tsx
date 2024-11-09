@@ -2,21 +2,21 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import MonteSeuPC from "./pages/MonteSeuPC.tsx";
+import MonteSeuPC from "./pages/MonteSeuPC/MonteSeuPC.tsx";
 import ErrorBoundary from "./components/ErrorBoundary";
 import NotFound from "./components/NotFound.tsx";
 import DetalhesProduto from "./pages/DetalhesProduto.tsx";
 import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
 import Login from "./pages/Login.tsx";
-import Cadastrar from "./pages/Cadastrar.tsx";
+import NovoProduto from "./pages/Produto/NovoProduto.tsx";
 import Sobre from "./pages/Sobre.tsx";
-import Processadores from "./pages/Processadores.tsx";
-import PlacaMae from "./pages/PlacaMae.tsx";
+import Processadores from "./pages/MonteSeuPC/Processadores.tsx";
+import PlacaMae from "./pages/MonteSeuPC/PlacaMae.tsx";
 import MemoriaRam from "./pages/MonteSeuPC/MemoriaRam.tsx";
 import Armazenamento from "./pages/MonteSeuPC/Armazenamento.tsx";
 import Cooler from "./pages/MonteSeuPC/Cooler.tsx";
-import PlacaVideo from "./pages/PlacaVideo.tsx";
+import PlacaVideo from "./pages/MonteSeuPC/PlacaVideo.tsx";
 import Fonte from "./pages/MonteSeuPC/Fonte.tsx";
 import Registrar from "./pages/Registrar.tsx";
 import { ReactNode } from "react";
@@ -38,14 +38,6 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <App />
-      </Layout>
-    ),
-  },
-  {
-    path: "/Cadastrar",
-    element: (
-      <Layout>
-        <Cadastrar />
       </Layout>
     ),
   },
@@ -101,7 +93,7 @@ const router = createBrowserRouter([
     path: "/produtos/novo",
     element: (
       <Layout>
-        <Cadastrar />
+        <NovoProduto />
       </Layout>
     ),
   },

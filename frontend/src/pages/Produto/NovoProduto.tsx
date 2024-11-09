@@ -7,7 +7,7 @@ interface Tipo {
   descricao: string;
 }
 
-function Cadastrar() {
+function NovoProduto() {
   const [produto, setProduto] = useState({
     titulo: "",
     descricao: "",
@@ -281,4 +281,4 @@ function Cadastrar() {
   );
 }
 
-export default Cadastrar;
+export default NovoProduto;

@@ -57,4 +57,28 @@ def criar_app():
         else:
             print('server', "tabelas ja criadas, continuando")
 
+        # criando tipos de produtos
+        criar_tipos()
+
         return app
+    
+def criar_tipos():
+    """ criando tipos de produtos """
+    from .models import Tipo
+
+    # verifica se ja nao existem tipos
+    if Tipo.query.count() == 0:
+        tipos = [
+            Tipo(nome='Processador', descricao='Laptop de qualidade'),
+            Tipo(nome='Placa Mãe', descricao='Monitor de qualidade'),
+            Tipo(nome='Placa Video', descricao='Mouse de qualidade'),
+            Tipo(nome='Placa de Vídeo', descricao='Teclado de qualidade'),
+            Tipo(nome='Memória RAM', descricao='Smartphone de qualidade'),
+            Tipo(nome='Armazenamento', descricao='Camera de qualidade'),
+            Tipo(nome='Cooler', descricao='Printer de qualidade'),
+            Tipo(nome='Fonte', descricao='Printer de qualidade'),
+        ]
+        db.session.add_all(tipos)
+        db.session.commit()
+    else:
+        print('server', "tipos ja criados, continuando")
