@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5000/produtos";
+const API_BASE_URL = "https://api.promotecnologia.com.br/produtos";
 
 export const buscar_produto_por_id = async (id: any) => {
   try {

@@ -3,7 +3,7 @@ sqlalchemy
 flask_sqlalchemy
 requests
 flask_cors
-Flask-JWT-Extended
 Flask-Limiter
 Flask-SQLAlchemy 
 Flask-Werkzeug
+flask_jwt_extended

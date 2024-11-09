@@ -19,9 +19,12 @@ import Cooler from "./pages/Cooler.tsx";
 import PlacaVideo from "./pages/PlacaVideo.tsx";
 import Fonte from "./pages/Fonte.tsx";
 import Registrar from "./pages/Registrar.tsx";
+import { ReactNode } from "react";
 
-
-const Layout = ({ children }) => (
+interface LayoutProps {
+  children: ReactNode;
+}
+const Layout = ({ children }: LayoutProps) => (
   <ErrorBoundary>
     <Header />
     {children}
@@ -93,6 +96,14 @@ const router = createBrowserRouter([
   {
     path: "/fonte",
     element: <Fonte />,
+  },
+  {
+    path: "/produtos/novo",
+    element: (
+      <Layout>
+        <Cadastrar />
+      </Layout>
+    ),
   },
   {
     path: "/login",

@@ -39,7 +39,7 @@ const Card = ({ id, imagem, titulo, descricao, preco }: cardProps) => {
         </p>
 
         <h5 className="mt-2 line-clamp-3 text-xl text-black font-semibold">
-          {preco}
+          R$ {preco}
         </h5>
       </div>
     </a>
