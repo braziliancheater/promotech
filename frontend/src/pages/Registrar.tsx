@@ -48,6 +48,12 @@ export default function Registrar() {
         throw new Error("Erro ao cadastrar usuário");
       }
 
+      const result = await response.json();
+
+      // resposta para json ;
+      localStorage.setItem("access_token", result["access_token"]);
+      window.location.href = "/";
+
       setSuccess(true);
     } catch (err) {
       setError(
@@ -162,10 +168,12 @@ export default function Registrar() {
             </div>
             {error && <p className="text-red-500 mt-2">{error}</p>}
             {success && (
-              <p className="text-green-500 mt-2">
-                Cadastro realizado com sucesso!
+              <div>
+                <p className="text-green-500 mt-2">
+                  Seu cadastrado foi realizado com sucesso!
+                </p>
                 <a href="/login">Entrar</a>
-              </p>
+              </div>
             )}
             <button
               type="submit"

@@ -21,7 +21,9 @@ def usuarios_cadastrar():
     email = dados.get("email")
     senha = dados.get("senha")
 
-    print("Dados: " + nome + email + senha)
+    # se nome for menor que 3 caracteres, retornar erro
+    if len(nome) < 3:
+        return jsonify({"error": "Nome deve ter pelo menos 3 caracteres"}), 400
     
     if not nome or not email or not senha:
         return jsonify({"error": "Todos os campos são obrigatórios"}), 400
@@ -33,6 +35,18 @@ def usuarios_cadastrar():
     # fazendo a senha virar hash
     senha_hash = generate_password_hash(senha)
     
+    # verificando se ja existe um usuario com esse email
+    usuario = Usuario.query.filter_by(email=email).first()
+    
+    if usuario:
+        return jsonify({"error": "Usuário com esse email ja existe"}), 400
+    
+    # verificando se ja existe um usuario com esse nome
+    usuario = Usuario.query.filter_by(nome=nome).first()
+    
+    if usuario:
+        return jsonify({"error": "Usuário com esse nome ja existe"}), 400
+
     try:
         usuario = Usuario(
             nome=nome,
@@ -41,7 +55,10 @@ def usuarios_cadastrar():
         )
         db.session.add(usuario)
         db.session.commit()
-        return jsonify({"usuario": usuario.id}), 200
+
+        # cria o token jwt
+        access_token = create_access_token(identity=usuario.id)
+        return jsonify({"access_token": access_token}), 201
     except Exception as e:
         return jsonify({"error": f"Erro ao cadastrar usuario: {str(e)}"}), 500
 

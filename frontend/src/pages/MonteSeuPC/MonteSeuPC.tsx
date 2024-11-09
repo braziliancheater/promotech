@@ -91,8 +91,6 @@ function MonteSeuPC() {
 
   return (
     <div className="main">
-      <Header />
-
       <main className="main_MonteSeuPC">
         <div className="menu">
           <ul>
