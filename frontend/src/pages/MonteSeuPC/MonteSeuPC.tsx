@@ -1,6 +1,5 @@
-import Header from "../../components/Header";
 import "./MonteSeuPC.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function MonteSeuPC() {
   /* Placa de Video */
@@ -14,10 +13,6 @@ function MonteSeuPC() {
     }
   };
 
-  if (typeof window !== "undefined") {
-    setInterval(atualizarPlacaVideo, 1000);
-  }
-
   /* Processadores */
   const [Processadores, setProcessadores] = useState(
     localStorage.getItem("processadores")
@@ -29,10 +24,6 @@ function MonteSeuPC() {
     }
   };
 
-  if (typeof window !== "undefined") {
-    setInterval(atualizarProcessadores, 1000);
-  }
-
   /* Placa Mãe  */
   const [placaMae, setPlacaMae] = useState(localStorage.getItem("placa_mae"));
   const atualizarPlacaMae = () => {
@@ -42,11 +33,7 @@ function MonteSeuPC() {
     }
   };
 
-  if (typeof window !== "undefined") {
-    setInterval(atualizarPlacaMae, 1000);
-  }
-
-  /* Momoria Ram  */
+  /* Memoria RAM  */
   const [memoriaRam, setMemoriaRam] = useState(
     localStorage.getItem("memoria_ram")
   );
@@ -56,10 +43,6 @@ function MonteSeuPC() {
       setMemoriaRam(novoValor);
     }
   };
-
-  if (typeof window !== "undefined") {
-    setInterval(atualizarMemoriaRam, 1000);
-  }
 
   /* Armazenamento  */
   const [Armazenamento, setArmazenamento] = useState(
@@ -72,10 +55,6 @@ function MonteSeuPC() {
     }
   };
 
-  if (typeof window !== "undefined") {
-    setInterval(atualizarArmazenamento, 1000);
-  }
-
   /* Cooler */
   const [Cooler, setCooler] = useState(localStorage.getItem("cooler"));
   const atualizarCooler = () => {
@@ -85,9 +64,26 @@ function MonteSeuPC() {
     }
   };
 
-  if (typeof window !== "undefined") {
-    setInterval(atualizarCooler, 1000);
-  }
+  useEffect(() => {
+    const intervalIds = [
+      setInterval(atualizarPlacaVideo, 1000),
+      setInterval(atualizarProcessadores, 1000),
+      setInterval(atualizarPlacaMae, 1000),
+      setInterval(atualizarMemoriaRam, 1000),
+      setInterval(atualizarArmazenamento, 1000),
+      setInterval(atualizarCooler, 1000),
+    ];
+
+    return () => {
+      intervalIds.forEach(clearInterval);
+    };
+  }, [placaVideo, Processadores, placaMae, memoriaRam, Armazenamento, Cooler]);
+
+  const handleLinkClick = (event: React.MouseEvent, src: string) => {
+    event.preventDefault();
+    const iframe = document.getElementById("screens") as HTMLIFrameElement;
+    iframe.src = src;
+  };
 
   return (
     <div className="main">
@@ -98,11 +94,7 @@ function MonteSeuPC() {
               <a
                 href="#"
                 className="parts"
-                onClick={(event) => {
-                  event.preventDefault();
-                  const iframe = document.getElementById("screens");
-                  iframe.src = "/processadores";
-                }}
+                onClick={(event) => handleLinkClick(event, "/processadores")}
               >
                 Processadores
               </a>
@@ -125,11 +117,7 @@ function MonteSeuPC() {
               <a
                 href="#"
                 className="parts"
-                onClick={(event) => {
-                  event.preventDefault();
-                  const iframe = document.getElementById("screens");
-                  iframe.src = "/placamae";
-                }}
+                onClick={(event) => handleLinkClick(event, "/placamae")}
               >
                 Placa Mãe
               </a>
@@ -152,11 +140,7 @@ function MonteSeuPC() {
               <a
                 href="#"
                 className="parts"
-                onClick={(event) => {
-                  event.preventDefault();
-                  const iframe = document.getElementById("screens");
-                  iframe.src = "/memoriaram";
-                }}
+                onClick={(event) => handleLinkClick(event, "/memoriaram")}
               >
                 Memória RAM
               </a>
@@ -179,11 +163,7 @@ function MonteSeuPC() {
               <a
                 href="#"
                 className="parts"
-                onClick={(event) => {
-                  event.preventDefault();
-                  const iframe = document.getElementById("screens");
-                  iframe.src = "/armazenamento";
-                }}
+                onClick={(event) => handleLinkClick(event, "/armazenamento")}
               >
                 Armazenamento
               </a>
@@ -206,11 +186,7 @@ function MonteSeuPC() {
               <a
                 href="#"
                 className="parts"
-                onClick={(event) => {
-                  event.preventDefault();
-                  const iframe = document.getElementById("screens");
-                  iframe.src = "/cooler";
-                }}
+                onClick={(event) => handleLinkClick(event, "/cooler")}
               >
                 Cooler
               </a>
@@ -233,11 +209,7 @@ function MonteSeuPC() {
               <a
                 href="#"
                 className="parts"
-                onClick={(event) => {
-                  event.preventDefault();
-                  const iframe = document.getElementById("screens");
-                  iframe.src = "/placavideo";
-                }}
+                onClick={(event) => handleLinkClick(event, "/placavideo")}
               >
                 Placa de Video
               </a>
@@ -260,23 +232,14 @@ function MonteSeuPC() {
               <a
                 href="#"
                 className="parts"
-                onClick={(event) => {
-                  event.preventDefault();
-                  const iframe = document.getElementById("screens");
-                  iframe.src = "/fonte";
-                }}
+                onClick={(event) => handleLinkClick(event, "/fonte")}
               >
                 FONTE
               </a>
             </li>
           </ul>
         </div>
-        <iframe
-          className="screens"
-          id="screens"
-          title="Monte seu PC"
-          /*style={{ width: "100%", height: "600px", border: "none" }}*/
-        ></iframe>
+        <iframe className="screens" id="screens" title="Monte seu PC"></iframe>
       </main>
     </div>
   );
