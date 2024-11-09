@@ -29,17 +29,20 @@ export default function Registrar() {
     setSuccess(false);
 
     try {
-      const response = await fetch("http://localhost:5000/usuario/cadastrar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nome: formData.name,
-          email: formData.email,
-          senha: formData.password,
-        }),
-      });
+      const response = await fetch(
+        "https://api.promotecnologia.com.br/usuario/cadastrar",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nome: formData.name,
+            email: formData.email,
+            senha: formData.password,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Erro ao cadastrar usuário");

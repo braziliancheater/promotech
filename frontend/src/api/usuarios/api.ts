@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5000/usuario";
+const API_BASE_URL = "https://api.promotecnologia.com.br/usuario";
 
 export const login_novo_usuario = async (dados: any) => {
   try {
