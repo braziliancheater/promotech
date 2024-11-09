@@ -6,6 +6,7 @@ import {
   LucideShoppingCart,
 } from "lucide-react";
 import Logo from "../assets/images/logo.png";
+import Dropdown from "./Dropdown";
 
 function Header() {
   return (
@@ -58,13 +59,7 @@ function Header() {
                 <LucidePlus />
                 Novo Produto
               </a>
-              <a
-                href="/login"
-                className="bg-black flex gap-2 font-semibold leading-6 p-2 rounded-lg text-white hover:bg-neutral-700 transition"
-              >
-                Entrar
-                <ArrowRight />
-              </a>
+              <Dropdown />
             </div>
           </div>
 

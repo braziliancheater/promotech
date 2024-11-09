@@ -24,7 +24,7 @@ function Login() {
 
       if (token) {
         localStorage.setItem("access_token", token);
-        window.location.href = "/dashboard";
+        window.location.href = "/";
       }
     } catch (error) {
       setError("Credenciais inválidas ou erro ao fazer login.");

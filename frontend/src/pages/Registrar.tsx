@@ -21,7 +21,7 @@ export default function Registrar() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
+      setError("As senhas não coincidem");
       return;
     }
     setIsLoading(true);
@@ -29,24 +29,27 @@ export default function Registrar() {
     setSuccess(false);
 
     try {
-      const response = await fetch("http://localhost:5000/usuario/registrar", {
+      const response = await fetch("http://localhost:5000/usuario/cadastrar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: formData.name,
-          password: formData.password,
+          nome: formData.name,
+          email: formData.email,
+          senha: formData.password,
         }),
       });
 
       if (!response.ok) {
-        throw new Error("Registration failed");
+        throw new Error("Erro ao cadastrar usuário");
       }
 
       setSuccess(true);
     } catch (err) {
-      setError("An error occurred during registration. Please try again.");
+      setError(
+        "Ocorreu um erro ao cadastrar usuário. Por favor, tente novamente."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -73,7 +76,6 @@ export default function Registrar() {
         </div>
       </div>
 
-      {/* Registration form on the right */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-8">
         <div className="w-full max-w-md">
           <h2 className="text-2xl font-bold mb-2 text-center">
@@ -88,15 +90,15 @@ export default function Registrar() {
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Name
+                Usuario
               </label>
               <input
                 id="name"
                 name="name"
                 type="text"
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                placeholder="John Doe"
+                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm"
+                placeholder="brazilian, ou gariel"
                 value={formData.name}
                 onChange={handleChange}
               />
@@ -113,8 +115,8 @@ export default function Registrar() {
                 name="email"
                 type="email"
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                placeholder="john@example.com"
+                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm"
+                placeholder="filosofem@cock.li"
                 value={formData.email}
                 onChange={handleChange}
               />
@@ -124,14 +126,15 @@ export default function Registrar() {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Password
+                Senha
               </label>
               <input
                 id="password"
                 name="password"
                 type="password"
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                placeholder="******"
+                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm"
                 value={formData.password}
                 onChange={handleChange}
               />
@@ -141,28 +144,32 @@ export default function Registrar() {
                 htmlFor="confirmPassword"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Confirm Password
+                Confirmar Senha
               </label>
               <input
                 id="confirmPassword"
                 name="confirmPassword"
                 type="password"
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                placeholder="******"
+                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm"
                 value={formData.confirmPassword}
                 onChange={handleChange}
               />
             </div>
             {error && <p className="text-red-500 mt-2">{error}</p>}
             {success && (
-              <p className="text-green-500 mt-2">Registration successful!</p>
+              <p className="text-green-500 mt-2">
+                Cadastro realizado com sucesso!
+                <a href="/login">Entrar</a>
+              </p>
             )}
             <button
               type="submit"
               disabled={isLoading}
               className="w-full bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 disabled:opacity-50"
             >
-              {isLoading ? "Registering..." : "Register"}
+              {isLoading ? "Registrando..." : "Registrar"}
             </button>
           </form>
         </div>
