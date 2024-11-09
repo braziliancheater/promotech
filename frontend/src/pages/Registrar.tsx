@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Logo from "../assets/images/logo.png";
+import { linkBase } from "../configuracoes";
 
 export default function Registrar() {
   const [formData, setFormData] = useState({
@@ -29,20 +30,17 @@ export default function Registrar() {
     setSuccess(false);
 
     try {
-      const response = await fetch(
-        "https://api.promotecnologia.com.br/usuario/cadastrar",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nome: formData.name,
-            email: formData.email,
-            senha: formData.password,
-          }),
-        }
-      );
+      const response = await fetch(linkBase + "/usuario/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nome: formData.name,
+          email: formData.email,
+          senha: formData.password,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error("Erro ao cadastrar usuário");

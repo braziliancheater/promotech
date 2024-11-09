@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "./components/Card";
 import { v4 } from "uuid";
+import * as configuracoes from "./configuracoes";
 
 function App() {
   const [produtos, setProdutos] = useState([]);
@@ -9,7 +10,8 @@ function App() {
     const fetchProdutos = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/produtos/listar" //"https://api.promotecnologia.com.br/produtos/listar"
+          // Obtem o link do .env
+          configuracoes.linkBase + "/produtos/listar"
         );
         if (response.ok) {
           const data = await response.json();

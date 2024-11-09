@@ -1,8 +1,8 @@
-const API_BASE_URL = "https://api.promotecnologia.com.br/usuario";
+import { linkBase } from "../../configuracoes";
 
 export const login_novo_usuario = async (dados: any) => {
   try {
-    const response = await fetch(API_BASE_URL + "/login", {
+    const response = await fetch(linkBase + "usuario/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,7 +24,7 @@ export const login_novo_usuario = async (dados: any) => {
 
 export const logout_usuario = async () => {
   try {
-    const response = await fetch(API_BASE_URL + "/logout", {
+    const response = await fetch(linkBase + "usuario/logout", {
       method: "POST",
     });
     if (response.ok) {
@@ -40,7 +40,7 @@ export const logout_usuario = async () => {
 
 export const cadastrar_novo_usuario = async (dados: any) => {
   try {
-    const response = await fetch(API_BASE_URL + "/cadastrar", {
+    const response = await fetch(linkBase + "usuario/cadastrar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

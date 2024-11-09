@@ -6,6 +6,7 @@ interface detalhesProps {
 }
 import { ArrowRightIcon, Star } from "lucide-react";
 import { useEffect, useState } from "react";
+import { linkBase } from "../../configuracoes";
 
 const DetalhesCard = ({ imagem, titulo, descricao, preco }: detalhesProps) => {
   const [similares, setSimilares] = useState([]);
@@ -13,8 +14,7 @@ const DetalhesCard = ({ imagem, titulo, descricao, preco }: detalhesProps) => {
   useEffect(() => {
     // buscando produtos similares
     fetch(
-      "http://localhost:5000/produtos/similar?nome_do_produto=" +
-        titulo.split(" ")[0],
+      linkBase + "/produtos/similar?nome_do_produto=" + titulo.split(" ")[0],
       {
         method: "GET",
         headers: {

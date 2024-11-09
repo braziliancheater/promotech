@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, ChevronDown, LogOut, UserCircle } from "lucide-react";
 import Perfil from "../assets/images/perfil.png";
+import { linkBase } from "../configuracoes";
 
 function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +11,7 @@ function Dropdown() {
     const token = localStorage.getItem("access_token");
 
     if (token) {
-      fetch("https://api.promotecnologia.com.br/usuario/me", {
+      fetch(linkBase + "/usuario/me", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

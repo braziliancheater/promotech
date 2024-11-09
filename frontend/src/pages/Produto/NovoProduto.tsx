@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { linkBase } from "../../configuracoes";
 
 // Definindo a interface para os tipos de produtos
 interface Tipo {
@@ -27,7 +28,7 @@ function NovoProduto() {
   useEffect(() => {
     const fetchTipos = async () => {
       try {
-        const response = await fetch("http://localhost:5000/tipo/listar");
+        const response = await fetch(linkBase + "/tipo/listar");
         const data = await response.json();
         if (response.ok) {
           setTipos(data.tipos);
@@ -96,7 +97,7 @@ function NovoProduto() {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/produtos/cadastrar", {
+      const response = await fetch(linkBase + "/produtos/cadastrar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -131,7 +132,7 @@ function NovoProduto() {
     const token = localStorage.getItem("access_token");
 
     if (token) {
-      fetch("https://api.promotecnologia.com.br/usuario/me", {
+      fetch(linkBase + "/usuario/me", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

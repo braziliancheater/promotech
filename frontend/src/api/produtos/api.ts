@@ -1,8 +1,8 @@
-const API_BASE_URL = "https://api.promotecnologia.com.br/produtos";
+import { linkBase } from "../../configuracoes";
 
 export const buscar_produto_por_id = async (id: any) => {
   try {
-    const response = await fetch(`${API_BASE_URL}?id=${id}`);
+    const response = await fetch(`${linkBase}/produtos/buscar?id=${id}`);
     if (response.ok) {
       const data = await response.json();
       return data.produto;
