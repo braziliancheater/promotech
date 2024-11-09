@@ -29,11 +29,11 @@ function DetalhesProduto() {
 
   return (
     <div>
-      <div className="flex justify-left items-center p-4">
-        <button
-          onClick={() => navigate(-1)}
-          className="text-black transition-all duration-300 ease-in-out"
-        >
+      <div
+        className="flex justify-left items-center p-4 cursor-pointer"
+        onClick={() => navigate(-1)}
+      >
+        <button className="text-black transition-all duration-300 ease-in-out">
           <ArrowLeft />
         </button>
         <p className="font-semibold">Voltar</p>

@@ -98,6 +98,10 @@ const router = createBrowserRouter([
     element: <Fonte />,
   },
   {
+    path: "/produtos/novo",
+    element: <Cadastrar />,
+  },
+  {
     path: "/login",
     element: <Login />,
   },
