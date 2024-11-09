@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import Card from "../components/Card";
-import { v4 } from "uuid";
 
 function PlacaVideo() {
     const [produtos, setProdutos] = useState([]);
@@ -50,7 +48,7 @@ function PlacaVideo() {
                             </h3>
                         </span>
 
-                        <h5 /*className="mt-2 line-clamp-3 text-xl text-black font-semibold"*/ style={{color: 'blue', fontSize: '20px'}}>
+                        <h5 /*className="mt-2 line-clamp-3 text-xl text-black font-semibold"*/ style={{color: '#00a202', fontSize: '20px'}}>
                             {produto["preco"]}
                         </h5>
                     </div>
