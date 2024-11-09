@@ -5,27 +5,9 @@ from . import produtos
 from ..models import Promocoes
 from .. import db
 
-@produtos.route('/produtos/cadastrar', methods=['POST'])
-def cadastrar_promocao():
-
-    
-    data = request.get_json()
-
-    try:
-        nova_promocao = Promocoes(
-            titulo=data['titulo'],
-            descricao=data['descricao'],
-            preco=data['valor'],
-            site=data['site'],
-            imagem=data['fotos']
-        )
-        db.session.add(nova_promocao)
-        db.session.commit() 
-        return f"Produto cadastrado com sucesso!", 201
-    except Exception as e:
-        db.session.rollback()
-        return f"Erro ao cadastrar Produto: {e}", 500
-    
+@produtos.route("/produtos/cadastrar", methods=["POST"])
+def produtos_cadastrar():
+    pass 
 
 @produtos.route("/produtos/dummy", methods=["GET"])
 def produtos_dummy():
