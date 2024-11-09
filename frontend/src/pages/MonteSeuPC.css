@@ -1,7 +1,6 @@
-.main{
+/*.main{
     height: 600px;
-}
-
+}*/
 .main_MonteSeuPC{
     display: flex;
     padding: 10px;
@@ -17,8 +16,8 @@
 }
 
 .screens {
-    background-color: #424242;
-    height: 600px;
+    background-color: #808080;
+    /*height: 600px;*/
     flex: 1;
     padding: 20px;
     transition: background-color 0.5s, color 0.5s;

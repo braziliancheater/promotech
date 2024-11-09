@@ -16,6 +16,7 @@ class Promocoes(db.Model):
     descricao = db.Column(db.String, nullable=False)
     preco = db.Column(db.String(255), nullable=False)
     site = db.Column(db.String(255), nullable=False)
+    id_tipo = db.Column(db.Integer, nullable=False)
     imagem = db.Column(db.String(255), nullable=False)
     criado_em = db.Column(db.DateTime, server_default=db.func.now())
     atualizado_em = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
