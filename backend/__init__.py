@@ -40,6 +40,13 @@ def criar_app():
         print('server', 'blueprint usuarios criado com sucesso')
     except Exception as e:
         print('server', f'erro ao criar blueprint usuarios: {e}')
+        
+    try:
+        from .tipo import tipo as tip_blueprint
+        app.register_blueprint(tip_blueprint)
+        print('server', 'blueprint tipo criado com sucesso')
+    except Exception as e:
+        print('server', f'erro ao criar tipo usuarios: {e}')
 
     # inicializao banco de dados
     db.init_app(app)

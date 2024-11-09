@@ -5,7 +5,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from . import usuarios
 from ..models import Usuario
-from .. import db, jwt, jwt_required, create_access_token
+from .. import db, jwt, jwt_required, create_access_token, get_jwt_identity
 
 limiter = Limiter(get_remote_address)
 
@@ -20,6 +20,8 @@ def usuarios_cadastrar():
     nome = dados.get("nome")
     email = dados.get("email")
     senha = dados.get("senha")
+
+    print("Dados: " + nome + email + senha)
     
     if not nome or not email or not senha:
         return jsonify({"error": "Todos os campos são obrigatórios"}), 400
@@ -72,6 +74,25 @@ def usuarios_login():
 def usuarios_logout():
     return jsonify({"message": "Logout bem-sucedido"}), 200
 
+@usuarios.route("/usuario/me", methods=["GET"])
+@jwt_required()
+def usuarios_me():
+    user_id = get_jwt_identity()
+    
+    try:
+        usuario = Usuario.query.get(user_id)
+        
+        if not usuario:
+            return jsonify({"error": "Usuário não encontrado"}), 404
+        
+        return jsonify({
+            "id": usuario.id,
+            "nome": usuario.nome,
+            "email": usuario.email
+        }), 200
+    except Exception as e:
+        return jsonify({"error": f"Erro ao obter dados do usuário: {str(e)}"}), 500
+    
 @usuarios.route("/usuario/listar", methods=["GET"])
 @jwt_required()  # rota protegida por JWT
 def usuarios_listar():

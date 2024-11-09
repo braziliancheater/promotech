@@ -27,3 +27,4 @@ class Usuario(db.Model):
     nome = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False)
     senha = db.Column(db.String(255), nullable=False)
+    imagem = db.Column(db.LargeBinary, nullable=True)
