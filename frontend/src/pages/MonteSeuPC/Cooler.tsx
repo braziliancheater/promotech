@@ -31,16 +31,9 @@ function Cooler() {
             <main className="grid grid-cols-4 gap-2">
             {produtos.map((produto) => (
                 <div onClick={() => handleClick(produto["titulo"])}>
-                    <a style={{background:'red'}}>
-                    <img
-                        alt=""
-                        src={produto["imagem"]}
-                        /*className="h-16 w-full object-cover"*/
-                        style={{height: '200px'}}
-                        loading="lazy"
-                    />
-
-                    <div style={{background: 'transparent', height: '50px', width: '100%'}}>
+                    <a style={{backgroundColor:'red'}}>
+                      <img alt="" src={produto["imagem"]} style={{height: '200px', backgroundColor: 'white'}} loading="lazy"/>
+                      <div style={{background: 'transparent', height: '50px', width: '100%'}}>
                         <span>
                             <h3 style={{color: 'white', fontSize: '18px'}}>
                                 {produto["titulo"]}
