@@ -5,9 +5,29 @@ interface detalhesProps {
   preco: number;
 }
 import { ArrowRightIcon, Star } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const DetalhesCard = ({ imagem, titulo, descricao, preco }: detalhesProps) => {
-  console.log(imagem, titulo, descricao, preco);
+  const [similares, setSimilares] = useState([]);
+
+  useEffect(() => {
+    // buscando produtos similares
+    fetch(
+      "http://localhost:5000/produtos/similar?nome_do_produto=" +
+        titulo.split(" ")[0],
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => setSimilares(data.produtos))
+      .catch((error) => {
+        console.error("Erro ao buscar produtos similares:", error);
+      });
+  }, similares);
 
   return (
     <div className="flex flex-col">
@@ -76,7 +96,24 @@ const DetalhesCard = ({ imagem, titulo, descricao, preco }: detalhesProps) => {
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
               Produtos Relacionados
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {similares.map((produto) => (
+                <div key={produto["id"]}>
+                  <a href={`/produto/detalhe?id=${produto["id"]}`}>
+                    <img
+                      src={produto["imagem"]}
+                      alt="Imagem do Produto"
+                      width={400}
+                      height={400}
+                      className="rounded-lg w-full aspect-square object-cover"
+                    />
+                    <h3 className="text-lg font-semibold">
+                      {produto["titulo"]}
+                    </h3>
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

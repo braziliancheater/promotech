@@ -119,3 +119,28 @@ def produtos_buscar():
         return {"produtos": produtos_list}, 200 
     except Exception as e:
         return {"error": f"Erro ao buscar produtos: {e}"}, 500
+    
+@produtos.route("/produtos/similar", methods=["GET"])
+def produtos_similar():
+    query = request.args.get("nome_do_produto")
+    if not query:
+        return {"error": "Nome do produto não informado"}, 400
+
+    try:
+        # limitar em 4 produtos
+        produtos = Promocoes.query.filter(Promocoes.titulo.contains(query)).limit(4).all()
+        produtos_list = []
+        
+        for produto in produtos:
+            produtos_list.append({
+                "id": produto.id,
+                "titulo": produto.titulo,
+                "descricao": produto.descricao,
+                "preco": produto.preco,
+                "site": produto.site,
+                "imagem": produto.imagem
+            })
+        
+        return {"produtos": produtos_list}, 200 
+    except Exception as e:
+        return {"error": f"Erro ao buscar produtos: {e}"}, 500
