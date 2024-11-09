@@ -116,6 +116,8 @@ function NovoProduto() {
           fotos: [],
           fotosBase64: [],
         });
+        // vai para o inicio
+        window.location.href = "/";
       } else {
         alert(`Erro: ${result.error || "Erro desconhecido"}`);
       }
@@ -149,7 +151,7 @@ function NovoProduto() {
     return (
       <div className="container mx-auto p-4">
         <div className="card mx-auto w-full max-w-2xl p-6 border border-gray-200 rounded-lg">
-          <h2 className="text-2xl font-bold mb-6">Cadastrar Produto</h2>
+          <h2 className="text-2xl font-bold mb-6">Cadastrar Novo Produto</h2>
           <p className="text-gray-600 mb-2 text-center">
             Faça login para continuar
           </p>
@@ -161,11 +163,11 @@ function NovoProduto() {
   return (
     <div className="container mx-auto p-4">
       <div className="card mx-auto w-full max-w-2xl p-6 border border-gray-200 rounded-lg">
-        <h2 className="text-2xl font-bold mb-6">Cadastrar Produto</h2>
+        <h2 className="text-2xl font-bold mb-6">Cadastrar Novo Produto</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="form-group">
             <label htmlFor="titulo" className="block text-lg font-medium mb-2">
-              Título do Produto
+              Nome do Produto
             </label>
             <input
               type="text"
@@ -173,7 +175,7 @@ function NovoProduto() {
               name="titulo"
               value={produto.titulo}
               onChange={handleInputChange}
-              className="w-full p-1 border rounded-md"
+              className="w-full p-1 border rounded-md placeholder:text-sm"
               placeholder="Título do Produto"
               required
             />
@@ -191,7 +193,7 @@ function NovoProduto() {
               name="descricao"
               value={produto.descricao}
               onChange={handleInputChange}
-              className="w-full p-1 border rounded-md"
+              className="w-full p-1 border rounded-md placeholder:text-sm"
               placeholder="Descrição do Produto"
               required
             ></textarea>
@@ -207,7 +209,7 @@ function NovoProduto() {
               name="valor"
               value={produto.valor}
               onChange={handleInputChange}
-              className="w-full p-1 border rounded-md"
+              className="w-full p-1 border rounded-md placeholder:text-sm"
               placeholder="Valor do Produto"
               required
             />
@@ -223,7 +225,7 @@ function NovoProduto() {
               name="site"
               value={produto.site}
               onChange={handleInputChange}
-              className="w-full p-1 border rounded-md"
+              className="w-full p-1 border rounded-md placeholder:text-sm"
               placeholder="Link da Promoção"
               required
             />
@@ -239,10 +241,10 @@ function NovoProduto() {
               name="tipo"
               value={produto.tipoId}
               onChange={handleTipoChange}
-              className="w-full p-1 border rounded-md"
+              className="w-full p-1 border rounded-md bg-white placeholder:text-xs"
               required
             >
-              <option value="">Selecione um Tipo</option>
+              <option value="">Escolha o tipo do produto</option>
               {loading ? (
                 <option>Carregando...</option>
               ) : (
@@ -273,7 +275,7 @@ function NovoProduto() {
             type="submit"
             className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800"
           >
-            Cadastrar Produto
+            Cadastrar Promoção
           </button>
         </form>
       </div>
