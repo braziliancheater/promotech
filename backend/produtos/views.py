@@ -7,7 +7,24 @@ from .. import db
 
 @produtos.route("/produtos/cadastrar", methods=["POST"])
 def produtos_cadastrar():
-    pass 
+    data = request.get_json()
+    print("Dados: "+ data['tipo_id'])
+    try:
+        nova_promocao = Promocoes(
+            titulo=data['titulo'],
+            descricao=data['descricao'],
+            preco=data['valor'],
+            site=data['site'],
+            imagem=data['fotos'],
+            id_tipo=data['tipo_id']
+        )
+        db.session.add(nova_promocao)
+        db.session.commit() 
+        return {"mensagem": "Produto cadastrado com sucesso!"}, 201
+    except Exception as e:
+        db.session.rollback()
+        print(e)
+        return {"mensagem:", "Erro ao cadastrar Produto: {e}"}, 500 
 
 @produtos.route("/produtos/dummy", methods=["GET"])
 def produtos_dummy():

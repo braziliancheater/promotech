@@ -1,4 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+// Definindo a interface para os tipos de produtos
+interface Tipo {
+  id: number;
+  nome: string;
+  descricao: string;
+}
 
 function Cadastrar() {
     const [produto, setProduto] = useState({
@@ -6,13 +13,43 @@ function Cadastrar() {
         descricao: '',
         valor: '',
         site: '',
+        tipoId: '', // Para armazenar o id do tipo selecionado
         fotos: [] as File[],
         fotosBase64: [] as string[]
     });
 
+    // Tipando o estado para garantir que 'tipos' seja um array de objetos do tipo 'Tipo'
+    const [tipos, setTipos] = useState<Tipo[]>([]); // Estado para armazenar os tipos
+    const [loading, setLoading] = useState(true); // Para mostrar o carregamento
+
+    // Carregar os tipos ao montar o componente
+    useEffect(() => {
+        const fetchTipos = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/tipo/listar');
+                const data = await response.json();
+                if (response.ok) {
+                    setTipos(data.tipos);
+                    setLoading(false);
+                } else {
+                    alert(`Erro ao carregar tipos: ${data.error || 'Erro desconhecido'}`);
+                }
+            } catch (error) {
+                console.error('Erro ao carregar tipos:', error);
+                alert('Ocorreu um erro ao carregar os tipos.');
+            }
+        };
+
+        fetchTipos();
+    }, []);
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setProduto({ ...produto, [name]: value });
+    };
+
+    const handleTipoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setProduto({ ...produto, tipoId: e.target.value }); // Atualiza o tipo selecionado
     };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +71,7 @@ function Cadastrar() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!produto.titulo || !produto.descricao || !produto.valor || !produto.site || produto.fotosBase64.length === 0) {
+        if (!produto.titulo || !produto.descricao || !produto.valor || !produto.site || produto.fotosBase64.length === 0 || !produto.tipoId) {
             alert('Todos os campos são obrigatórios!');
             return;
         }
@@ -44,6 +81,7 @@ function Cadastrar() {
             descricao: produto.descricao,
             valor: produto.valor,
             site: produto.site,
+            tipo_id: produto.tipoId, // Envia o id do tipo selecionado
             fotos: produto.fotosBase64[0],
         };
 
@@ -64,6 +102,7 @@ function Cadastrar() {
                     descricao: '',
                     valor: '',
                     site: '',
+                    tipoId: '', // Resetar o tipo
                     fotos: [],
                     fotosBase64: [],
                 });
@@ -130,6 +169,30 @@ function Cadastrar() {
                             className="w-full p-2 border rounded-md"
                             required
                         />
+                    </div>
+
+                    {/* Dropdown de Tipos */}
+                    <div className="form-group">
+                        <label htmlFor="tipo" className="block text-lg font-medium mb-2">Tipo</label>
+                        <select
+                            id="tipo"
+                            name="tipo"
+                            value={produto.tipoId}
+                            onChange={handleTipoChange}
+                            className="w-full p-2 border rounded-md"
+                            required
+                        >
+                            <option value="">Selecione um Tipo</option>
+                            {loading ? (
+                                <option>Carregando...</option>
+                            ) : (
+                                tipos.map((tipo) => (
+                                    <option key={tipo.id} value={tipo.id}>
+                                        {tipo.nome}
+                                    </option>
+                                ))
+                            )}
+                        </select>
                     </div>
 
                     <div className="form-group">
