@@ -2,22 +2,12 @@ import {
   ArrowRight,
   LucideComputer,
   LucideHome,
-  LucideInfo,
   LucidePlus,
   LucideShoppingCart,
 } from "lucide-react";
 import Logo from "../assets/images/logo.png";
-import { useEffect, useState } from "react";
 
 function Header() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    
-
-    
-  }, []);
-
   return (
     <header className="bg-white border-b border-neutral-200 shadow-sm">
       <nav
