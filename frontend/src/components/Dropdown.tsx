@@ -16,7 +16,14 @@ function Dropdown() {
           Authorization: `Bearer ${token}`,
         },
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            // se resposta da requisição não for 200
+            localStorage.removeItem("access_token");
+            throw new Error(`Falha ao obter usuario ${response.status}`);
+          }
+          return response.json();
+        })
         .then((data) => setUser(data))
         .catch((error) => {
           console.error("Erro ao carregar os dados do usuário:", error);

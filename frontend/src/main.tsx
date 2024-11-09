@@ -13,11 +13,11 @@ import Cadastrar from "./pages/Cadastrar.tsx";
 import Sobre from "./pages/Sobre.tsx";
 import Processadores from "./pages/Processadores.tsx";
 import PlacaMae from "./pages/PlacaMae.tsx";
-import MemoriaRam from "./pages/MemoriaRam.tsx";
-import Armazenamento from "./pages/Armazenamento.tsx";
-import Cooler from "./pages/Cooler.tsx";
+import MemoriaRam from "./pages/MonteSeuPC/MemoriaRam.tsx";
+import Armazenamento from "./pages/MonteSeuPC/Armazenamento.tsx";
+import Cooler from "./pages/MonteSeuPC/Cooler.tsx";
 import PlacaVideo from "./pages/PlacaVideo.tsx";
-import Fonte from "./pages/Fonte.tsx";
+import Fonte from "./pages/MonteSeuPC/Fonte.tsx";
 import Registrar from "./pages/Registrar.tsx";
 import { ReactNode } from "react";
 
