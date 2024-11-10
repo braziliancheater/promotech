@@ -4,11 +4,24 @@ import { linkBase } from "../../configuracoes";
 function PlacaMae() {
   const [produtos, setProdutos] = useState([]);
 
+  /* Processador */
+  const [Processadores, setProcessadores] = useState(
+    localStorage.getItem("processadores")
+  );
+  const atualizarProcessadores = () => {
+    const novoValor = localStorage.getItem("processadores");
+    if (novoValor !== Processadores) {
+      setProcessadores(novoValor);
+    }
+  };
+  setInterval(atualizarProcessadores, 1000);
+  /* Processador */
+
   useEffect(() => {
     const fetchProdutos = async () => {
       try {
         const response = await fetch(
-          linkBase + "/produtos/listar" //"https://api.brazilian.lol/produtos/listar"
+          linkBase + "/produtos/buscar?query=placa+mae" //"https://api.brazilian.lol/produtos/listar"
         );
         if (response.ok) {
           const data = await response.json();
@@ -27,12 +40,13 @@ function PlacaMae() {
   const handleClick = (titulo: any) => {
     localStorage.setItem("placa_mae", titulo);
   };
+
   return (
-    <div>
-      <main className="grid grid-cols-4 gap-2">
+    <div style={{display: 'flex', textAlign: 'center'}}>
+      <main className="grid grid-cols-5 gap-2">
         {produtos.map((produto) => (
-          <div onClick={() => handleClick(produto["titulo"])}>
-            <a className="cursor-pointer overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+          <div onClick={() => handleClick(produto["titulo"])} style={{height: '280px'}}>
+            <a style={{display: 'flex', flexDirection: 'column',  alignItems: 'center',}}>
               <img
                 alt=""
                 src={produto["imagem"]}
@@ -62,6 +76,9 @@ function PlacaMae() {
                 >
                   {produto["preco"]}
                 </h5>
+                <p style={{ color: "yellow" }} id="Processadores">
+                {Processadores}
+              </p>
               </div>
             </a>
           </div>
