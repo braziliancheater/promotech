@@ -3,12 +3,19 @@ interface detalhesProps {
   titulo: string;
   descricao: string;
   preco: number;
+  link: string;
 }
 import { ArrowRightIcon, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { linkBase } from "../../configuracoes";
 
-const DetalhesCard = ({ imagem, titulo, descricao, preco }: detalhesProps) => {
+const DetalhesCard = ({
+  imagem,
+  titulo,
+  descricao,
+  preco,
+  link,
+}: detalhesProps) => {
   const [similares, setSimilares] = useState([]);
 
   useEffect(() => {
@@ -27,7 +34,7 @@ const DetalhesCard = ({ imagem, titulo, descricao, preco }: detalhesProps) => {
       .catch((error) => {
         console.error("Erro ao buscar produtos similares:", error);
       });
-  }, similares);
+  }, []);
 
   return (
     <div className="flex flex-col">
@@ -37,9 +44,9 @@ const DetalhesCard = ({ imagem, titulo, descricao, preco }: detalhesProps) => {
             <img
               src={imagem}
               alt="Imagem do Produto"
-              width={400}
-              height={400}
-              className="rounded-lg w-full aspect-square object-cover"
+              width="300"
+              height="300"
+              className="rounded-lg w-full h-[600px] object-contain aspect-square"
             />
           </div>
           <div className="flex flex-col items-start gap-6">
@@ -59,10 +66,13 @@ const DetalhesCard = ({ imagem, titulo, descricao, preco }: detalhesProps) => {
             </div>
             <div className="flex items-center gap-4">
               <h2 className="text-4xl font-bold">R$ {preco}</h2>
-              <button className="bg-black flex gap-2 font-semibold leading-6 p-2 rounded-lg text-white hover:bg-neutral-700 transition">
+              <a
+                href={link}
+                className="bg-black flex gap-2 font-semibold leading-6 p-2 rounded-lg text-white hover:bg-neutral-700 transition"
+              >
                 Visitar Site
                 <ArrowRightIcon className="h-5 w-5" />
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -75,21 +85,6 @@ const DetalhesCard = ({ imagem, titulo, descricao, preco }: detalhesProps) => {
             </h2>
             <div className="grid gap-4 text-muted-foreground">
               <p>{descricao}</p>
-            </div>
-          </div>
-          <div className="grid gap-6">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              Especificações do Produto
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div className="grid gap-2">
-                <h3 className="text-lg font-semibold">Material</h3>
-                <p className="text-muted-foreground">Nao informado</p>
-              </div>
-              <div className="grid gap-2">
-                <h3 className="text-lg font-semibold">Tipo</h3>
-                <p className="text-muted-foreground">Nao informado</p>
-              </div>
             </div>
           </div>
           <div className="grid gap-6">

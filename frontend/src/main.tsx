@@ -20,6 +20,8 @@ import PlacaVideo from "./pages/MonteSeuPC/PlacaVideo.tsx";
 import Fonte from "./pages/MonteSeuPC/Fonte.tsx";
 import Registrar from "./pages/Registrar.tsx";
 import { ReactNode } from "react";
+import Categorias from "./pages/Categorias/Categorias.tsx";
+import BuscarProdutos from "./pages/Buscar/BuscarProdutos.tsx";
 
 interface LayoutProps {
   children: ReactNode;
@@ -94,6 +96,22 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <NovoProduto />
+      </Layout>
+    ),
+  },
+  {
+    path: "/categorias",
+    element: (
+      <Layout>
+        <Categorias />
+      </Layout>
+    ),
+  },
+  {
+    path: "/produtos/buscar",
+    element: (
+      <Layout>
+        <BuscarProdutos />
       </Layout>
     ),
   },

@@ -103,7 +103,8 @@ def produtos_buscar():
         return {"error": "Query não informado"}, 400
     
     try:
-        produtos = Promocoes.query.filter(Promocoes.titulo.contains(query)).all()
+        # busca produtos com o nome do produto
+        produtos = Promocoes.query.filter(Promocoes.titulo.contains(query)).limit(10).all()
         produtos_list = []
         
         for produto in produtos:
@@ -129,6 +130,26 @@ def produtos_similar():
     try:
         # limitar em 4 produtos
         produtos = Promocoes.query.filter(Promocoes.titulo.contains(query)).limit(4).all()
+        produtos_list = []
+        
+        for produto in produtos:
+            produtos_list.append({
+                "id": produto.id,
+                "titulo": produto.titulo,
+                "descricao": produto.descricao,
+                "preco": produto.preco,
+                "site": produto.site,
+                "imagem": produto.imagem
+            })
+        
+        return {"produtos": produtos_list}, 200 
+    except Exception as e:
+        return {"error": f"Erro ao buscar produtos: {e}"}, 500
+    
+@produtos.route("/produtos/categoria/<id>", methods=["GET"])
+def categoria_produtos(id):
+    try:
+        produtos = Promocoes.query.filter(Promocoes.id_tipo == id).all()
         produtos_list = []
         
         for produto in produtos:

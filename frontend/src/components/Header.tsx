@@ -2,12 +2,32 @@ import {
   LucideComputer,
   LucideHome,
   LucidePlus,
+  LucideSearch,
   LucideShoppingCart,
+  Search,
 } from "lucide-react";
 import Logo from "../assets/images/logo.png";
 import Dropdown from "./Dropdown";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Header() {
+  const [dadosPesquisa, setDadosPesquisa] = useState("");
+  const navigate = useNavigate();
+
+  function enviarPesquisa(e: React.FormEvent) {
+    e.preventDefault();
+
+    if (dadosPesquisa === "") {
+      return;
+    }
+
+    const queryParams = new URLSearchParams();
+    queryParams.set("nome", dadosPesquisa);
+
+    navigate(`/produtos/buscar?${queryParams.toString()}`);
+  }
+
   return (
     <header className="bg-white border-b border-neutral-200 shadow-sm">
       <nav
@@ -21,33 +41,29 @@ function Header() {
               <p className="text-lg font-semibold pl-3">PromoTech</p>
             </a>
 
-            <form>
-              <div className="relative">
+            <form
+              onSubmit={(e) => enviarPesquisa(e)}
+              className="flex w-full lg:w-auto mb-4 lg:mb-0"
+            >
+              <div className="relative flex-grow">
                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <svg
-                    className="w-4 h-4 text-gray-500"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                    />
-                  </svg>
+                  <Search className="h-4 w-4 text-gray-500" />
                 </div>
                 <input
-                  type="pesquisa"
-                  id="pesquisa"
+                  type="search"
+                  placeholder="Pesquisar produtos..."
                   className="block min-w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Pesquisar"
-                  required
+                  value={dadosPesquisa}
+                  onChange={(e) => setDadosPesquisa(e.target.value)}
                 />
               </div>
+              <button
+                type="submit"
+                className="p-2 rounded-xl ml-2 bg-black text-white flex items-center justify-center"
+              >
+                <LucideSearch className="h-4 w-4 mr-1" />
+                Buscar
+              </button>
             </form>
 
             <div className="hidden md:flex-1 md:flex lg:flex lg:flex-1 md:justify-end lg:justify-end gap-4">
@@ -71,7 +87,7 @@ function Header() {
               Incio
             </a>
             <a
-              href="/"
+              href="/categorias"
               className="flex gap-2 font-semibold leading-6 text-gray-900 hover:text-gray-600"
             >
               <LucideShoppingCart />

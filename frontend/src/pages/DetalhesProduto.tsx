@@ -45,6 +45,7 @@ function DetalhesProduto() {
             titulo={produto["titulo"]}
             descricao={produto["descricao"]}
             preco={produto["preco"]}
+            link={produto["site"]}
           />
         ) : (
           <p>Carregando...</p>

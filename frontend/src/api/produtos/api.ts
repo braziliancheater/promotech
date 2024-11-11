@@ -2,7 +2,7 @@ import { linkBase } from "../../configuracoes";
 
 export const buscar_produto_por_id = async (id: any) => {
   try {
-    const response = await fetch(`${linkBase}/produtos/buscar?id=${id}`);
+    const response = await fetch(`${linkBase}/produtos?id=${id}`);
     if (response.ok) {
       const data = await response.json();
       return data.produto;

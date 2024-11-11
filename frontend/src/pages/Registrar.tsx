@@ -42,11 +42,12 @@ export default function Registrar() {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Erro ao cadastrar usuário");
-      }
-
       const result = await response.json();
+
+      if (!response.ok) {
+        setError(result["error"]);
+        return;
+      }
 
       // resposta para json ;
       localStorage.setItem("access_token", result["access_token"]);
