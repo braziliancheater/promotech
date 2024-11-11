@@ -8,7 +8,7 @@ function Processadores() {
     const fetchProdutos = async () => {
       try {
         const response = await fetch(
-          linkBase + "/produtos/listar" //"https://api.brazilian.lol/produtos/listar"
+          linkBase + "/produtos/buscar?query=processador" //"https://api.brazilian.lol/produtos/listar"
         );
         if (response.ok) {
           const data = await response.json();
@@ -29,16 +29,16 @@ function Processadores() {
   };
 
   return (
-    <div>
-      <main className="grid grid-cols-4 gap-2">
+    <div style={{display: 'flex', textAlign: 'center'}}>
+      <main className="grid grid-cols-5 gap-2">
         {produtos.map((produto) => (
-          <div onClick={() => handleClick(produto["titulo"])}>
-            <a className="cursor-pointer overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+          <div onClick={() => handleClick(produto["titulo"])} style={{height: '280px'}}>
+            <a style={{display: 'flex', flexDirection: 'column',  alignItems: 'center',}}>
               <img
                 alt=""
                 src={produto["imagem"]}
                 /*className="h-16 w-full object-cover"*/
-                style={{ height: "200px" }}
+                style={{ height: "200px", display: 'flex' }}
                 loading="lazy"
               />
 
@@ -49,11 +49,11 @@ function Processadores() {
                   width: "100%",
                 }}
               >
-                <span>
+                <a href="#">
                   <h3 style={{ color: "white", fontSize: "18px" }}>
                     {produto["titulo"]}
                   </h3>
-                </span>
+                </a>
 
                 <h5
                   /*className="mt-2 line-clamp-3 text-xl text-black font-semibold"*/ style={{

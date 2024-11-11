@@ -8,7 +8,7 @@ function PlacaVideo() {
     const fetchProdutos = async () => {
       try {
         const response = await fetch(
-          linkBase + "/produtos/listar" //"https://api.brazilian.lol/produtos/listar"
+          linkBase + "/produtos/buscar?query=vídeo" //"https://api.brazilian.lol/produtos/listar"
         );
         if (response.ok) {
           const data = await response.json();
@@ -29,11 +29,11 @@ function PlacaVideo() {
   };
 
   return (
-    <div>
-      <main className="main_PlacaVideo grid grid-cols-4 gap-2">
+    <div style={{display: 'flex', textAlign: 'center'}}>
+      <main className="grid grid-cols-5 gap-2">
         {produtos.map((produto) => (
           <div onClick={() => handleClick(produto["titulo"])}>
-            <a className="cursor-pointer overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+            <a style={{display: 'flex', flexDirection: 'column',  alignItems: 'center',}}>
               <img
                 alt=""
                 src={produto["imagem"]}

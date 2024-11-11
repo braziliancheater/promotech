@@ -4,35 +4,73 @@ import { linkBase } from "../../configuracoes";
 function PlacaMae() {
   const [produtos, setProdutos] = useState([]);
 
-  useEffect(() => {
-    const fetchProdutos = async () => {
-      try {
-        const response = await fetch(
-          linkBase + "/produtos/listar" //"https://api.brazilian.lol/produtos/listar"
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setProdutos(data.produtos);
-        } else {
-          console.error("Falha ao obter dados:", response.status);
-        }
-      } catch (error) {
-        console.error("Erro ao obter dados:", error);
-      }
-    };
+  /* Processador */
+  const [Processadores, setProcessadores] = useState(
+    localStorage.getItem("processadores")
+  );
+  const atualizarProcessadores = () => {
+    const novoValor = localStorage.getItem("processadores");
+    if (novoValor !== Processadores) {
+      setProcessadores(novoValor);
+    }
+  };
+  setInterval(atualizarProcessadores, 1000);
+  /* Processador */
 
-    fetchProdutos();
-  }, []);
+  let nomeProcessador = localStorage.getItem("processadores");
+
+  if (nomeProcessador.includes("Intel")){
+    useEffect(() => {
+      const fetchProdutos = async () => {
+        try {
+          const response = await fetch(
+            linkBase + "/produtos/buscar?query=placa+mae" //"https://api.brazilian.lol/produtos/listar"
+          );
+          if (response.ok) {
+            const data = await response.json();
+            setProdutos(data.produtos);
+          } else {
+            console.error("Falha ao obter dados:", response.status);
+          }
+        } catch (error) {
+          console.error("Erro ao obter dados:", error);
+        }
+      };
+  
+      fetchProdutos();
+    }, []);
+  } else if (nomeProcessador.includes("AMD")){
+    useEffect(() => {
+      const fetchProdutos = async () => {
+        try {
+          const response = await fetch(
+            linkBase + "/produtos/buscar?query=processador" //"https://api.brazilian.lol/produtos/listar"
+          );
+          if (response.ok) {
+            const data = await response.json();
+            setProdutos(data.produtos);
+          } else {
+            console.error("Falha ao obter dados:", response.status);
+          }
+        } catch (error) {
+          console.error("Erro ao obter dados:", error);
+        }
+      };
+  
+      fetchProdutos();
+    }, []);
+  }
 
   const handleClick = (titulo: any) => {
     localStorage.setItem("placa_mae", titulo);
   };
+
   return (
-    <div>
-      <main className="grid grid-cols-4 gap-2">
+    <div style={{display: 'flex', textAlign: 'center'}}>
+      <main className="grid grid-cols-5 gap-2">
         {produtos.map((produto) => (
-          <div onClick={() => handleClick(produto["titulo"])}>
-            <a className="cursor-pointer overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+          <div onClick={() => handleClick(produto["titulo"])} style={{height: '280px'}}>
+            <a style={{display: 'flex', flexDirection: 'column',  alignItems: 'center',}}>
               <img
                 alt=""
                 src={produto["imagem"]}

@@ -98,7 +98,7 @@ function MonteSeuPC() {
               >
                 Processadores
               </a>
-              <p style={{ color: "yellow" }} id="Processadores">
+              <p style={{ color: "#054F77" }} id="Processadores">
                 {Processadores}
               </p>
             </li>
@@ -121,7 +121,7 @@ function MonteSeuPC() {
               >
                 Placa Mãe
               </a>
-              <p style={{ color: "yellow" }} id="placaMae">
+              <p style={{ color: "#054F77" }} id="placaMae">
                 {placaMae}
               </p>
             </li>
@@ -144,7 +144,7 @@ function MonteSeuPC() {
               >
                 Memória RAM
               </a>
-              <p style={{ color: "yellow" }} id="memoriaRam">
+              <p style={{ color: "#054F77" }} id="memoriaRam">
                 {memoriaRam}
               </p>
             </li>
@@ -167,7 +167,7 @@ function MonteSeuPC() {
               >
                 Armazenamento
               </a>
-              <p style={{ color: "yellow" }} id="Armazenamento">
+              <p style={{ color: "#054F77" }} id="Armazenamento">
                 {Armazenamento}
               </p>
             </li>
@@ -190,7 +190,7 @@ function MonteSeuPC() {
               >
                 Cooler
               </a>
-              <p style={{ color: "yellow" }} id="Cooler">
+              <p style={{ color: "#054F77" }} id="Cooler">
                 {Cooler}
               </p>
             </li>
@@ -213,7 +213,7 @@ function MonteSeuPC() {
               >
                 Placa de Video
               </a>
-              <p style={{ color: "yellow" }} id="placaVideo">
+              <p style={{ color: "#054F77" }} id="placaVideo">
                 {placaVideo}
               </p>
             </li>
