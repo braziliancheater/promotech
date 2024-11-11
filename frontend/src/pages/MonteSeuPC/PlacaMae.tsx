@@ -17,25 +17,49 @@ function PlacaMae() {
   setInterval(atualizarProcessadores, 1000);
   /* Processador */
 
-  useEffect(() => {
-    const fetchProdutos = async () => {
-      try {
-        const response = await fetch(
-          linkBase + "/produtos/buscar?query=placa+mae" //"https://api.brazilian.lol/produtos/listar"
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setProdutos(data.produtos);
-        } else {
-          console.error("Falha ao obter dados:", response.status);
-        }
-      } catch (error) {
-        console.error("Erro ao obter dados:", error);
-      }
-    };
+  let nomeProcessador = localStorage.getItem("processadores");
 
-    fetchProdutos();
-  }, []);
+  if (nomeProcessador.includes("Intel")){
+    useEffect(() => {
+      const fetchProdutos = async () => {
+        try {
+          const response = await fetch(
+            linkBase + "/produtos/buscar?query=placa+mae" //"https://api.brazilian.lol/produtos/listar"
+          );
+          if (response.ok) {
+            const data = await response.json();
+            setProdutos(data.produtos);
+          } else {
+            console.error("Falha ao obter dados:", response.status);
+          }
+        } catch (error) {
+          console.error("Erro ao obter dados:", error);
+        }
+      };
+  
+      fetchProdutos();
+    }, []);
+  } else if (nomeProcessador.includes("AMD")){
+    useEffect(() => {
+      const fetchProdutos = async () => {
+        try {
+          const response = await fetch(
+            linkBase + "/produtos/buscar?query=processador" //"https://api.brazilian.lol/produtos/listar"
+          );
+          if (response.ok) {
+            const data = await response.json();
+            setProdutos(data.produtos);
+          } else {
+            console.error("Falha ao obter dados:", response.status);
+          }
+        } catch (error) {
+          console.error("Erro ao obter dados:", error);
+        }
+      };
+  
+      fetchProdutos();
+    }, []);
+  }
 
   const handleClick = (titulo: any) => {
     localStorage.setItem("placa_mae", titulo);
@@ -76,9 +100,6 @@ function PlacaMae() {
                 >
                   {produto["preco"]}
                 </h5>
-                <p style={{ color: "yellow" }} id="Processadores">
-                {Processadores}
-              </p>
               </div>
             </a>
           </div>

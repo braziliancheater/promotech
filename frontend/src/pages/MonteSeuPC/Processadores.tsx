@@ -30,7 +30,7 @@ function Processadores() {
 
   return (
     <div style={{display: 'flex', textAlign: 'center'}}>
-      <main className="grid grid-cols-4 gap-2">
+      <main className="grid grid-cols-5 gap-2">
         {produtos.map((produto) => (
           <div onClick={() => handleClick(produto["titulo"])} style={{height: '280px'}}>
             <a style={{display: 'flex', flexDirection: 'column',  alignItems: 'center',}}>
