@@ -58,6 +58,13 @@ function MonteSeuPC() {
     currency: "BRL",
   });
 
+  // limpar o localStorage
+  const limparLocalStorage = () => {
+    localStorage.clear();
+    // Atualizar a tela
+    window.location.reload();
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
       <main className="flex-grow p-8">
@@ -78,6 +85,12 @@ function MonteSeuPC() {
                 </li>
               ))}
             </ul>
+            <button
+              onClick={limparLocalStorage}
+              className="mt-4 bg-black text-white py-2 px-4 rounded-lg w-full"
+            >
+              Limpar
+            </button>
           </div>
 
           <div className="flex-grow ml-8">
