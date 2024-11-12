@@ -4,104 +4,65 @@ import { linkBase } from "../../configuracoes";
 function PlacaMae() {
   const [produtos, setProdutos] = useState([]);
 
-  /* Processador */
-  const [Processadores, setProcessadores] = useState(
-    localStorage.getItem("processadores")
-  );
-  const atualizarProcessadores = () => {
-    const novoValor = localStorage.getItem("processadores");
-    if (novoValor !== Processadores) {
-      setProcessadores(novoValor);
-    }
-  };
-  setInterval(atualizarProcessadores, 1000);
-  /* Processador */
-
-  let nomeProcessador = localStorage.getItem("processadores");
-
-  if (nomeProcessador.includes("Intel")){
-    useEffect(() => {
-      const fetchProdutos = async () => {
-        try {
-          const response = await fetch(
-            linkBase + "/produtos/buscar?query=placa+mae" //"https://api.brazilian.lol/produtos/listar"
-          );
-          if (response.ok) {
-            const data = await response.json();
-            setProdutos(data.produtos);
-          } else {
-            console.error("Falha ao obter dados:", response.status);
-          }
-        } catch (error) {
-          console.error("Erro ao obter dados:", error);
+  useEffect(() => {
+    const fetchProdutos = async () => {
+      try {
+        const response = await fetch(linkBase + "/produtos/categoria/2");
+        if (response.ok) {
+          const data = await response.json();
+          setProdutos(data.produtos);
+        } else {
+          console.error("Falha ao obter dados:", response.status);
         }
-      };
-  
-      fetchProdutos();
-    }, []);
-  } else if (nomeProcessador.includes("AMD")){
-    useEffect(() => {
-      const fetchProdutos = async () => {
-        try {
-          const response = await fetch(
-            linkBase + "/produtos/buscar?query=processador" //"https://api.brazilian.lol/produtos/listar"
-          );
-          if (response.ok) {
-            const data = await response.json();
-            setProdutos(data.produtos);
-          } else {
-            console.error("Falha ao obter dados:", response.status);
-          }
-        } catch (error) {
-          console.error("Erro ao obter dados:", error);
-        }
-      };
-  
-      fetchProdutos();
-    }, []);
-  }
+      } catch (error) {
+        console.error("Erro ao obter dados:", error);
+      }
+    };
 
-  const handleClick = (titulo: any) => {
-    localStorage.setItem("placa_mae", titulo);
+    fetchProdutos();
+  }, []);
+
+  const salvarNoBanco = (produto: any) => {
+    localStorage.setItem("placaMae", JSON.stringify([produto]));
   };
 
   return (
-    <div style={{display: 'flex', textAlign: 'center'}}>
-      <main className="grid grid-cols-5 gap-2">
+    <div className="flex justify-center p-4">
+      <main className="grid grid-cols-2 gap-4">
         {produtos.map((produto) => (
-          <div onClick={() => handleClick(produto["titulo"])} style={{height: '280px'}}>
-            <a style={{display: 'flex', flexDirection: 'column',  alignItems: 'center',}}>
+          <div
+            key={produto["id"]}
+            className="bg-white p-4 rounded-lg shadow-lg cursor-pointer text-center"
+          >
+            <a
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textDecoration: "none",
+              }}
+            >
               <img
-                alt=""
+                alt={produto["titulo"]}
                 src={produto["imagem"]}
-                /*className="h-16 w-full object-cover"*/
-                style={{ height: "200px" }}
+                className="h-48 rounded-lg object-cover"
                 loading="lazy"
               />
-
-              <div
-                style={{
-                  background: "transparent",
-                  height: "50px",
-                  width: "100%",
-                }}
-              >
-                <span>
-                  <h3 style={{ color: "white", fontSize: "18px" }}>
-                    {produto["titulo"]}
-                  </h3>
-                </span>
-
-                <h5
-                  /*className="mt-2 line-clamp-3 text-xl text-black font-semibold"*/ style={{
-                    color: "#00a202",
-                    fontSize: "20px",
-                  }}
-                >
-                  {produto["preco"]}
+              <div className="mt-4">
+                <h3 className="text-black text-lg font-semibold">
+                  {produto["titulo"]}
+                </h3>
+                <h5 className="text-green-500 text-xl font-bold">
+                  R$ {produto["preco"]}
                 </h5>
               </div>
             </a>
+            <button
+              onClick={() => salvarNoBanco(produto)}
+              className="mt-4 bg-black text-white py-2 px-4 rounded-lg w-full"
+            >
+              Adicionar
+            </button>
           </div>
         ))}
       </main>

@@ -159,7 +159,8 @@ def categoria_produtos(id):
                 "descricao": produto.descricao,
                 "preco": produto.preco,
                 "site": produto.site,
-                "imagem": produto.imagem
+                "imagem": produto.imagem,
+                "tipo": produto.id_tipo
             })
         
         return {"produtos": produtos_list}, 200 
