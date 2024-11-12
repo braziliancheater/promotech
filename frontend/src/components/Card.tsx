@@ -25,7 +25,7 @@ const Card = ({ id, imagem, titulo, descricao, preco }: cardProps) => {
       <img
         alt=""
         src={imagem}
-        className="h-56 w-full object-cover"
+        className="h-56 w-full object-scale-down"
         loading="lazy"
       />
 

@@ -118,9 +118,9 @@ export default function Categorias() {
                 <img
                   src={produto["imagem"]}
                   alt="Imagem do Produto"
-                  width={400}
-                  height={400}
-                  className="rounded-lg w-full aspect-square object-cover"
+                  width={200}
+                  height={200}
+                  className="rounded-lg w-full h-[250px] aspect-square object-scale-down object-center"
                 />
                 <h2 className="text-xl font-semibold mb-2">
                   {produto["titulo"]}
